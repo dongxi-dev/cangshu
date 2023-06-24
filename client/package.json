@@ -1,0 +1,27 @@
+{
+  "name": "vue-template",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite -m alpha",
+    "build:alpha": "vite build -m alpha",
+    "build:beta": "vite build -m beta",
+    "build:stable": "vite build -m stable",
+    "preview:alpha": "pnpm build:alpha && vite preview -m alpha",
+    "preview:beta": "pnpm build:beta && vite preview -m beta",
+    "preview:stable": "pnpm build:stable && vite preview -m stable",
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
+  },
+  "private": true,
+  "dependencies": {
+    "pinia": "^2.1.4",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.16.18",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "typescript": "~5.0.4",
+    "vite": "^4.3.9",
+    "vue-tsc": "^1.8.1"
+  }
+}

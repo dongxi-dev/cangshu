@@ -1,4 +1,6 @@
 {
   "private": true,
-  "scripts": {}
+  "scripts": {
+    "dev": "pnpm -F=* dev"
+  }
 }
