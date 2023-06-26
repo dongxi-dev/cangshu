@@ -23,6 +23,9 @@ export default defineConfig({
       "~": fileURLToPath(new URL("./source", import.meta.url)),
     },
   },
+  build: {
+    rollupOptions: {},
+  },
   envDir: "./environments",
   envPrefix: "__",
 });

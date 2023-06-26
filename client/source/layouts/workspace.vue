@@ -19,6 +19,5 @@
 
 .content {
   flex: 1;
-  background: lightblue;
 }
 </style>

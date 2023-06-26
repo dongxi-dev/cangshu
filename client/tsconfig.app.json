@@ -1,7 +1,7 @@
 {
   "include": [
     "source/global.d.ts",
-    "source/**/*",
+    "source/**/*.ts",
     "source/**/*.vue",
     ".local/*.d.ts"
   ],
@@ -26,5 +26,8 @@
     "paths": {
       "~/*": ["source/*"]
     }
+  },
+  "vueCompilerOptions": {
+    "target": 3.3
   }
 }
