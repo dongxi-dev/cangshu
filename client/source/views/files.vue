@@ -12,7 +12,7 @@ onMounted(() => {
 <template>
   <div>
     <ElRow>
-      <ElCol :span="12"> 文件管理 </ElCol>
+      <ElCol :span="12">文件管理</ElCol>
       <ElCol :span="12">
         <ElButton type="primary">创建文件夹</ElButton>
         <ElButton type="primary">上传</ElButton>
