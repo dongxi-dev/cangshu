@@ -6,7 +6,7 @@ import {
 
 const routes: RouteRecordRaw[] = [
   { path: "", component: () => import("~/views/home.vue") },
-  { path: "/login", component: () => import("~/views/login.vue") }
+  { path: "/login", component: () => import("~/views/login.vue") },
   {
     path: "/workspace",
     component: () => import("~/layouts/workspace.vue"),
