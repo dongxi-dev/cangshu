@@ -1,5 +1,10 @@
 {
-  "include": ["source/global.d.ts", "source/**/*", "source/**/*.vue"],
+  "include": [
+    "source/global.d.ts",
+    "source/**/*.ts",
+    "source/**/*.vue",
+    ".local/*.d.ts"
+  ],
   "exclude": ["source/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
@@ -21,5 +26,8 @@
     "paths": {
       "~/*": ["source/*"]
     }
+  },
+  "vueCompilerOptions": {
+    "target": 3.3
   }
 }

@@ -1,8 +1,22 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  type RouteRecordRaw,
+} from "vue-router";
 
-const routes = [
-  { path: "/login", component: () => import("~/views/login.vue") },
-  { path: "/home", component: () => import("~/views/home.vue") }
+const routes: RouteRecordRaw[] = [
+  { path: "", component: () => import("~/views/home.vue") },
+  { path: "/login", component: () => import("~/views/login.vue") }
+  {
+    path: "/workspace",
+    component: () => import("~/layouts/workspace.vue"),
+    children: [
+      {
+        path: "files",
+        component: () => import("~/views/files.vue"),
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
