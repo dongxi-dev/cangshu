@@ -1,5 +1,10 @@
 {
-  "include": ["source/global.d.ts", "source/**/*", "source/**/*.vue"],
+  "include": [
+    "source/global.d.ts",
+    "source/**/*",
+    "source/**/*.vue",
+    ".local/*.d.ts"
+  ],
   "exclude": ["source/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
