@@ -16,7 +16,7 @@ const rules = reactive<FormRules<typeof ruleForm>>({
 
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
-  formEl.validate((valid) => {
+  formEl.validate((valid: any) => {
     if (valid) {
       console.log("submit!");
     } else {
@@ -39,7 +39,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
           :rules="rules"
           label-width="120px"
           label-position="top"
-          :class="$style.loginMain"
+          :class="$style.login_main"
         >
           <el-form-item label="账号" prop="account">
             <el-input
@@ -74,29 +74,29 @@ const submitForm = (formEl: FormInstance | undefined) => {
 .loginContainer {
   height: calc(100vh - 21px);
   background: repeating-linear-gradient(to right, #5a9ca8, #5b9da9);
-  .loginWrap {
-    width: 100%;
-    height: 100%;
-    background-image: url("../assets/loginBg.png");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .title {
-      font-size: 30px;
-      text-align: center;
-      color: #fff;
-      margin-bottom: 24px;
-      text-shadow: 1px 3px 3px #000;
-    }
-    .loginMain {
-      width: 450px;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 48px 48px 24px;
-      border-radius: 12px;
-    }
-  }
+}
+.loginWrap {
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/loginBg.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title {
+  font-size: 30px;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 24px;
+  text-shadow: 1px 3px 3px #000;
+}
+.login_main {
+  width: 450px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 48px 48px 24px;
+  border-radius: 12px;
 }
 </style>
