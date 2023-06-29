@@ -16,10 +16,20 @@ export class UserController {
     return this.fileService.getFiles();
   }
 
+  @Get('create')
+  createUser() {
+    return this.userService.createOne();
+  }
+
   @ApiTags('user')
   @Get(':id')
   getById(@Param() param) {
     return this.userService.getById();
     return 'get one' + param.id;
+  }
+
+  @Get()
+  getUsers() {
+    return this.userService.getUsers();
   }
 }
