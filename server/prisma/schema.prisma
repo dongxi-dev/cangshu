@@ -25,5 +25,5 @@ model File {
   // 文件 MINE 类型
   mine     String?
   createAt DateTime @default(now())
-  updateAt DateTime @default(now())
+  updateAt DateTime @updatedAt
 }

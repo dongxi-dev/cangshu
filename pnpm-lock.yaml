@@ -6,7 +6,11 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      '@j-l/dti':
+        specifier: 1.0.0-beta
+        version: registry.npmjs.org/@j-l/dti@1.0.0-beta
 
   client:
     dependencies:
@@ -5908,6 +5912,12 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  registry.npmjs.org/@j-l/dti@1.0.0-beta:
+    resolution: {integrity: sha512-ii+k4E2HsleQRIh0Bt2PEApmH27OUx9tQ3X4dCO36zuc4POidbP4BHSJn9LC46bgaZuv49BIsYOlAJLlyVKcsg==, registry: https://registry.npmmirror.com/, tarball: https://registry.npmjs.org/@j-l/dti/-/dti-1.0.0-beta.tgz}
+    name: '@j-l/dti'
+    version: 1.0.0-beta
     dev: true
 
   registry.npmjs.org/@j.l/nestjs-database@1.0.0-alpha.1(@nestjs/common@10.0.0)(@prisma/client@4.16.1):

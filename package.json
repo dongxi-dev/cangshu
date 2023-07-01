@@ -2,5 +2,8 @@
   "private": true,
   "scripts": {
     "dev": "pnpm -F=* dev"
+  },
+  "devDependencies": {
+    "@j-l/dti": "1.0.0-beta"
   }
 }
