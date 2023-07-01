@@ -6,6 +6,5 @@ export class AppService {
     return {
       type: 'qiniuyun',
     };
-    return 'Hello World! 333';
   }
 }

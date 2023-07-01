@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "predev": "prisma migrate dev",
     "dev": "nest start --debug --watch",
     "build": "nest build",
+    "dev-db": "prisma migrate dev --name dev",
     "format": "prettier --write \"source/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",

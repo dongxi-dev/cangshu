@@ -1,9 +1,12 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-// 用户模块
 model User {
   id       Int      @id @default(autoincrement())
   username String   @unique
@@ -13,7 +16,6 @@ model User {
   createAt DateTime @default(now())
 }
 
-// 文件
 model File {
   id       Int      @id @default(autoincrement())
   // 文件名
@@ -24,8 +26,4 @@ model File {
   mine     String?
   createAt DateTime @default(now())
   updateAt DateTime @default(now())
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
