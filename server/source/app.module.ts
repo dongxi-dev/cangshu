@@ -1,5 +1,5 @@
-import { Logger, Module } from '@nestjs/common';
-import { PrismaModule, loggingMiddleware } from 'nestjs-prisma';
+import { Module } from '@nestjs/common';
+import { DBModule } from '@j.l/nestjs-database';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FileModule } from './file/file.module';
@@ -7,17 +7,8 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    PrismaModule.forRoot({
+    DBModule.forRoot({
       isGlobal: true,
-      prismaServiceOptions: {
-        middlewares: [
-          // configure your prisma middleware
-          loggingMiddleware({
-            logger: new Logger('PrismaMiddleware'),
-            logLevel: 'log',
-          }),
-        ],
-      },
     }),
     FileModule,
     UserModule,
