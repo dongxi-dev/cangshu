@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '@prisma/client';
+// import { User } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class UserService {
     return this.prisma.user.findMany({});
   }
 
-  createOne(): Promise<User> {
+  createOne(): Promise<any> {
     return this.prisma.user.create({
       data: {
         username: '' + Math.random(),
@@ -27,5 +27,13 @@ export class UserService {
         email: Math.random() + 'alice@prisma.io',
       },
     });
+  }
+
+  verifyUser(data): any {
+    const { username, password } = data;
+    return {
+      code: 0,
+      msg: '登录成功',
+    };
   }
 }
