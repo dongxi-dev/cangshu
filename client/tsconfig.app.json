@@ -25,7 +25,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["source/*"]
-    }
+    },
+    "types": ["@j-l/dti"]
   },
   "vueCompilerOptions": {
     "target": 3.3

@@ -32,4 +32,12 @@ export class UserService {
       },
     });
   }
+
+  verifyUser(data): any {
+    const { username, password } = data;
+    return {
+      code: 0,
+      msg: '登录成功!!',
+    };
+  }
 }

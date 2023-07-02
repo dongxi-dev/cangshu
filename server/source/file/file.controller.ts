@@ -1,27 +1,37 @@
 import {
+  Body,
   Controller,
   DefaultValuePipe,
   ExecutionContext,
   Get,
   ParseIntPipe,
   Post,
+  Put,
   Query,
   createParamDecorator,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { PageQuery } from 'source/utils';
+import { FileService } from './file.service';
 
 @Controller('files')
 @ApiTags('文件管理')
 export class FileController {
+  constructor(private fileService: FileService) {}
+
   @Get()
-  getPage(@PageQuery() pageQuery: DTI.PageNote) {
-    console.log(323, pageQuery);
-    return {
-      list: [],
-      query: pageQuery,
-      total: 1,
-    };
+  async getPage(@PageQuery() pageQuery: DTI.PageNote) {
+    return this.fileService.getPage(pageQuery);
+  }
+
+  @Put()
+  addOne(@Body() body: any) {
+    console.log(333, body);
+    return this.fileService.addOne({
+      type: 0,
+      name: body.name || 'not name',
+      size: 0,
+    });
   }
 
   @Get(':id')
