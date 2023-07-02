@@ -1,20 +1,26 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
+import { loginUser } from "~/services/user";
 
 const ruleFormRef = ref<FormInstance>();
 
 const ruleForm = reactive({
-  account: "",
+  username: "",
   password: "",
 });
 
 const rules = reactive<FormRules<typeof ruleForm>>({
-  account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+  username: [{ required: true, message: "请输入账号", trigger: "blur" }],
   password: [{ required: true, message: "请输入密码", trigger: "blur" }],
 });
 
-const submitForm = (formEl: FormInstance | undefined) => {
+const submitForm = async (formEl: FormInstance | undefined) => {
+  const res = await loginUser({
+    username:'aaaa',
+    password:'1111'
+  })
+  console.log(res) 
   if (!formEl) return;
   formEl.validate((valid: any) => {
     if (valid) {
@@ -41,10 +47,10 @@ const submitForm = (formEl: FormInstance | undefined) => {
           label-position="top"
           :class="$style.login_main"
         >
-          <el-form-item label="账号" prop="account">
+          <el-form-item label="账号" prop="username">
             <el-input
               style="height: 40px"
-              v-model="ruleForm.account"
+              v-model="ruleForm.username"
               placeholder="请输入账号"
             />
           </el-form-item>
