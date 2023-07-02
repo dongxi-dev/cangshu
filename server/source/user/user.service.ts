@@ -14,6 +14,10 @@ export class UserService {
     return 'check';
   }
 
+  getOne(id: string) {
+    return this.db.user.findMany({ id });
+  }
+
   getUsers() {
     return this.db.user.findMany({});
   }

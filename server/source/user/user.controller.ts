@@ -16,6 +16,7 @@ export class UserController {
     return this.fileService.getFiles();
   }
 
+  @ApiTags('user')
   @Get('create')
   createUser() {
     return this.userService.createOne();
@@ -23,9 +24,8 @@ export class UserController {
 
   @ApiTags('user')
   @Get(':id')
-  getById(@Param() param) {
-    return this.userService.getById();
-    return 'get one' + param.id;
+  getUser(@Param() param) {
+    return this.userService.getOne(param);
   }
 
   @Get()
