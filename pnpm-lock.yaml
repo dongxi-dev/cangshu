@@ -15,8 +15,8 @@ importers:
   client:
     dependencies:
       '@j-l/request':
-        specifier: 1.0.0-beta.3
-        version: 1.0.0-beta.3
+        specifier: 1.0.0-beta.4
+        version: 1.0.0-beta.4
       '@tanstack/vue-query':
         specifier: ^4.29.20
         version: 4.29.20(vue@3.3.4)
@@ -839,8 +839,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /@j-l/request@1.0.0-beta.3:
-    resolution: {integrity: sha512-vkU3ryCGcPfwKQCcN17Kdo6o2phzcfRxWhyF6voUfnGIfoSaEuIaQAd6cEemQCpevP4frdA00qVuXSoC871Kaw==}
+  /@j-l/request@1.0.0-beta.4:
+    resolution: {integrity: sha512-IFahHeHlMS6YHEtGyJSAhEIJCOEGF6qxKh4qiB+80TR5ZAjf+eDsOxvDgoNfZhVWcUtQHMPgayaEh7QzVp6DiA==}
     dev: false
 
   /@jest/console@29.5.0:
