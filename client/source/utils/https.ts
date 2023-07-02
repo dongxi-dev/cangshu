@@ -19,9 +19,8 @@ async function request<T, U>(
     method: option.method,
     headers,
   });
-
+  console.log(response,'response')
   if (response.code !== 0) {
-    // notice.error(data.msg)
     ElMessage({
       message: response.msg,
       type: "warning",
