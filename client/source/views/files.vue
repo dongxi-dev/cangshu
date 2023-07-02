@@ -5,16 +5,27 @@ import { addFileEntry, getFilePage } from "~/services/file";
 const state = reactive({
   page: null as DTI.Page | null,
   isCreateFolderDialogVisible: false,
+  queryNote: {
+    keyword: "",
+  } as DTI.PageNote,
   createFolderForm: {
     name: "",
   },
 });
 
-const init = async () => {
-  state.page = await getFilePage();
+const getPage = async (number?: number) => {
+  state.page = await getFilePage({
+    number: number || state.page?.note.number || 1,
+    size: 10,
+    keyword: state.queryNote.keyword,
+  });
 };
 
-onMounted(init);
+const onSearch = () => {
+  getPage(1);
+};
+
+onMounted(getPage);
 
 const onAddFolder = async () => {
   await addFileEntry({
@@ -22,11 +33,16 @@ const onAddFolder = async () => {
     name: state.createFolderForm.name,
   });
 
-  init();
+  getPage();
 
   state.createFolderForm.name = "";
 
   state.isCreateFolderDialogVisible = false;
+};
+
+const onPageChange = (number: number) => {
+  console.log(333, number);
+  getPage(number);
 };
 </script>
 
@@ -59,8 +75,12 @@ const onAddFolder = async () => {
       </ElCol>
     </ElRow>
     <ElSpace :size="16">
-      <ElInput :class="$style.search" placeholder="请输入关键字" />
-      <ElButton type="primary">搜索</ElButton>
+      <ElInput
+        :class="$style.search"
+        v-model="state.queryNote.keyword"
+        placeholder="请输入关键字"
+      />
+      <ElButton type="primary" @click="onSearch">搜索</ElButton>
     </ElSpace>
 
     <ElTable :data="state.page?.list">
@@ -69,7 +89,12 @@ const onAddFolder = async () => {
       <ElTableColumn prop="createAt" label="创建时间" width="180" />
     </ElTable>
 
-    <ElPagination layout="prev, pager, next" :total="100" />
+    <ElPagination
+      layout="prev, pager, next"
+      :total="state.page?.total"
+      :current="state.page?.note.number"
+      @currentChange="onPageChange"
+    />
   </div>
 </template>
 

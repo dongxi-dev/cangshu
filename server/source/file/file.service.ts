@@ -8,18 +8,21 @@ export class FileService {
   async getPage(note: DTI.PageNote) {
     const total = await this.db.file.count();
     const list = await this.db.file.findMany({
-      skip: 1,
-      take: 1,
+      skip: note.size * (note.number - 1 >= 0 ? note.number - 1 : 0),
+      take: note.size,
+      orderBy: {
+        createAt: 'desc',
+      },
     });
 
     return {
       total,
       list,
+      note,
     };
   }
 
   async addOne(data: { type: number; name: string; size: number }) {
-    console.log('add 99');
     return this.db.file.create({
       data,
     });

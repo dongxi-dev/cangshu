@@ -1,7 +1,9 @@
 import client from "@j-l/request";
 
-export async function getFilePage(): Promise<DTI.Page> {
-  const result: any = await client.get("/files");
+export async function getFilePage(
+  params?: Partial<DTI.PageNote>
+): Promise<DTI.Page> {
+  const result: any = await client.get("/files", params);
 
   return result;
 }
