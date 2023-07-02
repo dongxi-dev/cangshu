@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-// import { User } from '@prisma/client';
-import { PrismaService } from 'nestjs-prisma';
+import { User } from '@prisma/client';
+import { DBService } from '@j.l/nestjs-database';
 
 @Injectable()
 export class UserService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private db: DBService) {}
 
   getById() {
     return 'user service return ';
@@ -15,11 +15,11 @@ export class UserService {
   }
 
   getUsers() {
-    return this.prisma.user.findMany({});
+    return this.db.user.findMany({});
   }
 
-  createOne(): Promise<any> {
-    return this.prisma.user.create({
+  createOne(): Promise<User> {
+    return this.db.user.create({
       data: {
         username: '' + Math.random(),
         password: '' + Math.random(),

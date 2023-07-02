@@ -1,5 +1,3 @@
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,7 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// 用户模块
 model User {
   id       Int      @id @default(autoincrement())
   username String   @unique
@@ -17,10 +14,8 @@ model User {
   name     String
   email    String? //s
   createAt DateTime @default(now())
-  Post     Post[]
 }
 
-// 文件
 model File {
   id       Int      @id @default(autoincrement())
   // 文件名
@@ -30,14 +25,5 @@ model File {
   // 文件 MINE 类型
   mine     String?
   createAt DateTime @default(now())
-  updateAt DateTime @default(now())
-}
-
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+  updateAt DateTime @updatedAt
 }
