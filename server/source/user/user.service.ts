@@ -33,7 +33,7 @@ export class UserService {
     const { username, password } = data;
     return {
       code: 0,
-      msg: '登录成功',
+      msg: '登录成功!!',
     };
   }
 }
