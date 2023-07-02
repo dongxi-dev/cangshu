@@ -1,8 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Side from '~/components/aside.vue';
+</script>
 
 <template>
   <div :class="$style.lot">
-    <div>side</div>
+    <Side />
     <div :class="$style.content">
       <RouterView />
     </div>
