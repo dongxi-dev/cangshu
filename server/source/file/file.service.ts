@@ -5,10 +5,22 @@ import { Injectable } from '@nestjs/common';
 export class FileService {
   constructor(private db: DBService) {}
 
-  getPage() {
-    this.db.file.findMany({
+  async getPage(note: DTI.PageNote) {
+    const total = await this.db.file.count();
+    const list = await this.db.file.findMany({
       skip: 1,
       take: 1,
+    });
+
+    return {
+      total,
+      list,
+    };
+  }
+
+  async addOne(data: { type: number; name: string; size: number }) {
+    return this.db.file.create({
+      data,
     });
   }
 
