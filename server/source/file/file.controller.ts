@@ -29,7 +29,7 @@ export class FileController {
     console.log(333, body);
     return this.fileService.addOne({
       type: 0,
-      name: body.name,
+      name: body.name || 'not name',
       size: 0,
     });
   }

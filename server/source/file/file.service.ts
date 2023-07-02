@@ -19,6 +19,7 @@ export class FileService {
   }
 
   async addOne(data: { type: number; name: string; size: number }) {
+    console.log('add 99');
     return this.db.file.create({
       data,
     });

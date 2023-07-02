@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-import ElementPlus from "element-plus";
+import ElementPlus, { ElMessage } from "element-plus";
 import client from "@j-l/request";
 import "element-plus/dist/index.css";
 import DefaultLayout from "~/layouts/default.vue";
@@ -11,6 +11,13 @@ client.config({
   base: API_BASE_URL,
   contentType: "json",
   responseType: "json",
+  onResponse(response) {
+    if (response.status > 399) {
+      ElMessage("失败");
+      throw new Error("请求异常");
+    }
+    return response.body;
+  },
 });
 
 createApp(DefaultLayout)
