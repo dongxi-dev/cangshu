@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@j-l/dti':
-        specifier: 1.0.0-beta
-        version: registry.npmjs.org/@j-l/dti@1.0.0-beta
+        specifier: 1.0.0-beta.3
+        version: 1.0.0-beta.3
 
   client:
     dependencies:
@@ -57,9 +57,9 @@ importers:
 
   server:
     dependencies:
-      '@j.l/nestjs-database':
-        specifier: 1.0.0-alpha.1
-        version: registry.npmjs.org/@j.l/nestjs-database@1.0.0-alpha.1(@nestjs/common@10.0.0)(@prisma/client@4.16.1)
+      '@j-l/nestjs-db':
+        specifier: 1.0.0-alpha.3
+        version: 1.0.0-alpha.3(@nestjs/common@10.0.0)(@prisma/client@4.16.1)
       '@nestjs/common':
         specifier: ^10.0.0
         version: 10.0.0(reflect-metadata@0.1.13)(rxjs@7.8.1)
@@ -132,7 +132,7 @@ importers:
         version: 29.1.0(@babel/core@7.22.5)(jest@29.5.0)(typescript@5.1.3)
       ts-loader:
         specifier: ^9.4.3
-        version: 9.4.3(typescript@5.1.3)(webpack@5.87.0)
+        version: 9.4.3(typescript@5.1.3)(webpack@5.88.1)
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@20.3.1)(typescript@5.1.3)
@@ -838,6 +838,20 @@ packages:
     resolution: {integrity: sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==}
     engines: {node: '>=8'}
     dev: true
+
+  /@j-l/dti@1.0.0-beta.3:
+    resolution: {integrity: sha512-3NJsNMNjgOzSbHhc0Vk4R5Wey8vIce3jhZKiYI5QNsIL7zdrvUKaTzuv43vqaTCFoBxWYFi5TCxXhE6SNMJj5A==}
+    dev: true
+
+  /@j-l/nestjs-db@1.0.0-alpha.3(@nestjs/common@10.0.0)(@prisma/client@4.16.1):
+    resolution: {integrity: sha512-50Vyi1Q3dP4xamX/WZGTgI6K1fCQBdaEAG2YRrHFch//SMYmzHXHHRGZlV0ONKjuBjkXddQVUC27MiWdZX7spQ==}
+    peerDependencies:
+      '@nestjs/common': ^10.0.0
+      '@prisma/client': ^4.0.0
+    dependencies:
+      '@nestjs/common': 10.0.0(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@prisma/client': 4.16.1(prisma@4.16.1)
+    dev: false
 
   /@j-l/request@1.0.0-beta.5:
     resolution: {integrity: sha512-GOQdEVcUDFUdXYRhyMUedVaeoesZjpKUpSzi+GBVWxxNswFikY6v0iIRNjqD3VcgX9YUW+GP1m/4LVlfbQCh+g==}
@@ -5337,6 +5351,30 @@ packages:
       webpack: 5.87.0
     dev: true
 
+  /terser-webpack-plugin@5.3.9(webpack@5.88.1):
+    resolution: {integrity: sha512-ZuXsqE07EcggTWQjXUj+Aot/OMcD0bMKGgF63f7UxYcu5/AJF53aIpK1YoP5xR9l6s/Hy2b+t1AM0bLNPRuhwA==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      '@swc/core': '*'
+      esbuild: '*'
+      uglify-js: '*'
+      webpack: ^5.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      esbuild:
+        optional: true
+      uglify-js:
+        optional: true
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.18
+      jest-worker: 27.5.1
+      schema-utils: 3.3.0
+      serialize-javascript: 6.0.1
+      terser: 5.18.1
+      webpack: 5.88.1
+    dev: true
+
   /terser@5.18.1:
     resolution: {integrity: sha512-j1n0Ao919h/Ai5r43VAnfV/7azUYW43GPxK7qSATzrsERfW7+y2QW9Cp9ufnRF5CQUWbnLSo7UJokSWCqg4tsQ==}
     engines: {node: '>=10'}
@@ -5433,7 +5471,7 @@ packages:
       yargs-parser: 21.1.1
     dev: true
 
-  /ts-loader@9.4.3(typescript@5.1.3)(webpack@5.87.0):
+  /ts-loader@9.4.3(typescript@5.1.3)(webpack@5.88.1):
     resolution: {integrity: sha512-n3hBnm6ozJYzwiwt5YRiJZkzktftRpMiBApHaJPoWLA+qetQBAXkHqCLM6nwSdRDimqVtA5ocIkcTRLMTt7yzA==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -5445,7 +5483,7 @@ packages:
       micromatch: 4.0.5
       semver: 7.5.2
       typescript: 5.1.3
-      webpack: 5.87.0
+      webpack: 5.88.1
     dev: true
 
   /ts-node@10.9.1(@types/node@20.3.1)(typescript@5.1.3):
@@ -5873,6 +5911,46 @@ packages:
       - uglify-js
     dev: true
 
+  /webpack@5.88.1:
+    resolution: {integrity: sha512-FROX3TxQnC/ox4N+3xQoWZzvGXSuscxR32rbzjpXgEzWudJFEJBpdlkkob2ylrv5yzzufD1zph1OoFsLtm6stQ==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    peerDependencies:
+      webpack-cli: '*'
+    peerDependenciesMeta:
+      webpack-cli:
+        optional: true
+    dependencies:
+      '@types/eslint-scope': 3.7.4
+      '@types/estree': 1.0.1
+      '@webassemblyjs/ast': 1.11.6
+      '@webassemblyjs/wasm-edit': 1.11.6
+      '@webassemblyjs/wasm-parser': 1.11.6
+      acorn: 8.9.0
+      acorn-import-assertions: 1.9.0(acorn@8.9.0)
+      browserslist: 4.21.9
+      chrome-trace-event: 1.0.3
+      enhanced-resolve: 5.15.0
+      es-module-lexer: 1.3.0
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      glob-to-regexp: 0.4.1
+      graceful-fs: 4.2.11
+      json-parse-even-better-errors: 2.3.1
+      loader-runner: 4.3.0
+      mime-types: 2.1.35
+      neo-async: 2.6.2
+      schema-utils: 3.3.0
+      tapable: 2.2.1
+      terser-webpack-plugin: 5.3.9(webpack@5.88.1)
+      watchpack: 2.4.0
+      webpack-sources: 3.2.3
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
+    dev: true
+
   /whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
     dependencies:
@@ -5969,22 +6047,3 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
-
-  registry.npmjs.org/@j-l/dti@1.0.0-beta:
-    resolution: {integrity: sha512-ii+k4E2HsleQRIh0Bt2PEApmH27OUx9tQ3X4dCO36zuc4POidbP4BHSJn9LC46bgaZuv49BIsYOlAJLlyVKcsg==, registry: https://registry.npmmirror.com/, tarball: https://registry.npmjs.org/@j-l/dti/-/dti-1.0.0-beta.tgz}
-    name: '@j-l/dti'
-    version: 1.0.0-beta
-    dev: true
-
-  registry.npmjs.org/@j.l/nestjs-database@1.0.0-alpha.1(@nestjs/common@10.0.0)(@prisma/client@4.16.1):
-    resolution: {integrity: sha512-caZSXSmDaLbwqiJW/6nmlaEXbhB1OrGZDFCwI2Kg4bchAP91cUSfVsEA79X59lbHuPZkwrTcdfDn9hvo6TTAGw==, registry: https://registry.npmmirror.com/, tarball: https://registry.npmjs.org/@j.l/nestjs-database/-/nestjs-database-1.0.0-alpha.1.tgz}
-    id: registry.npmjs.org/@j.l/nestjs-database/1.0.0-alpha.1
-    name: '@j.l/nestjs-database'
-    version: 1.0.0-alpha.1
-    peerDependencies:
-      '@nestjs/common': ^10.0.0
-      '@prisma/client': ^4.0.0
-    dependencies:
-      '@nestjs/common': 10.0.0(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@prisma/client': 4.16.1(prisma@4.16.1)
-    dev: false

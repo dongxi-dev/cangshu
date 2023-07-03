@@ -1,4 +1,4 @@
-import { DBService } from '@j.l/nestjs-database';
+import { DBService } from '@j-l/nestjs-db';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
