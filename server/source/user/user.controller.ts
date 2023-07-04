@@ -11,11 +11,6 @@ export class UserController {
     private fileService: FileService,
   ) {}
 
-  @Get('files')
-  getFiles() {
-    return this.fileService.getFiles();
-  }
-
   @ApiTags('user')
   @Get('create')
   createUser() {
