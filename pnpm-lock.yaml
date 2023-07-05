@@ -15,8 +15,8 @@ importers:
   client:
     dependencies:
       '@j-l/request':
-        specifier: 1.0.0-beta.5
-        version: 1.0.0-beta.5
+        specifier: 1.0.0-beta.6
+        version: 1.0.0-beta.6
       '@tanstack/vue-query':
         specifier: ^4.29.20
         version: 4.29.20(vue@3.3.4)
@@ -867,8 +867,8 @@ packages:
       '@prisma/client': 4.16.1(prisma@4.16.1)
     dev: false
 
-  /@j-l/request@1.0.0-beta.5:
-    resolution: {integrity: sha512-GOQdEVcUDFUdXYRhyMUedVaeoesZjpKUpSzi+GBVWxxNswFikY6v0iIRNjqD3VcgX9YUW+GP1m/4LVlfbQCh+g==}
+  /@j-l/request@1.0.0-beta.6:
+    resolution: {integrity: sha512-dmph7hTY5mZzIkl44g/aFfNgwNw89S+ZfSE0VzqkBmROv060V9fZgsBm5J9vC0lVwF9/CP1uoXEVB7Ix2djtGA==}
     dev: false
 
   /@jest/console@29.5.0:
