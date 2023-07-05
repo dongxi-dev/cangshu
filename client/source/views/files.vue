@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, reactive } from "vue";
-import { addFileEntry, getFilePage } from "~/services/file";
+import { addFileEntry, getFilePage, removeFileEntry } from "~/services/file";
 
 const state = reactive({
   page: null as DTI.Page | null,
@@ -41,8 +41,20 @@ const onAddFolder = async () => {
 };
 
 const onPageChange = (number: number) => {
-  console.log(333, number);
   getPage(number);
+};
+
+const onRemove = async (id: string) => {
+  await removeFileEntry(id);
+  getPage();
+};
+
+const onEdit = () => {};
+
+const onPreview = () => {};
+
+const onDownload = (url: string) => {
+  window.open(url);
 };
 </script>
 
@@ -87,6 +99,29 @@ const onPageChange = (number: number) => {
       <ElTableColumn prop="id" label="ID" width="180" />
       <ElTableColumn prop="name" label="文件名" width="180" />
       <ElTableColumn prop="createAt" label="创建时间" width="180" />
+      <ElTableColumn prop="" label="操作" width="280">
+        <template #default="scope">
+          <ElPopconfirm title="确认删除？" @confirm="onRemove(scope.row.id)">
+            <template #reference>
+              <el-button link type="primary" size="small"> 删除 </el-button>
+            </template>
+          </ElPopconfirm>
+          <el-button link type="primary" size="small" @click="onEdit"
+            >编辑</el-button
+          >
+          <ElButton
+            link
+            type="primary"
+            size="small"
+            @click="onDownload(scope.row.id)"
+          >
+            下载
+          </ElButton>
+          <ElButton link type="primary" size="small" @click="onPreview">
+            Preview
+          </ElButton>
+        </template>
+      </ElTableColumn>
     </ElTable>
 
     <ElPagination

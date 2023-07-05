@@ -1,5 +1,6 @@
 import { DBService } from '@j-l/nestjs-db';
 import { Injectable } from '@nestjs/common';
+import { FilePayload } from '@j-l/nestjs-db';
 
 @Injectable()
 export class FileService {
@@ -12,6 +13,10 @@ export class FileService {
       },
       name: {
         contains: note.keyword,
+      },
+      // 查询已删除的
+      removeAt: {
+        equals: null,
       },
     };
     const [list, total] = await Promise.all([
@@ -91,7 +96,7 @@ export class FileService {
         id,
       },
       data: {
-        removeAt: Date(),
+        removeAt: new Date().toISOString(),
         // removeBy:
       },
     });

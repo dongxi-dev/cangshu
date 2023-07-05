@@ -12,3 +12,13 @@ export const addFileEntry = async (params: { type: number; name: string }) => {
   // 暂时只考虑 文件夹
   const result: any = await client.put("/files", params);
 };
+
+export const removeFileEntry = async (id: string) => {
+  const result: any = await client.delete(
+    "/files/" + id,
+    {},
+    {
+      payload: {},
+    }
+  );
+};
