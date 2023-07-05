@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@J-l/request": "npm:@j-l/request@1.0.0-beta.7",
     "@j-l/request": "1.0.0-beta.6",
     "@tanstack/vue-query": "^4.29.20",
     "element-plus": "^2.3.7",

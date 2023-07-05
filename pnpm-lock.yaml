@@ -14,6 +14,9 @@ importers:
 
   client:
     dependencies:
+      '@J-l/request':
+        specifier: npm:@j-l/request@1.0.0-beta.7
+        version: /@j-l/request@1.0.0-beta.7
       '@j-l/request':
         specifier: 1.0.0-beta.6
         version: 1.0.0-beta.6
@@ -869,6 +872,10 @@ packages:
 
   /@j-l/request@1.0.0-beta.6:
     resolution: {integrity: sha512-dmph7hTY5mZzIkl44g/aFfNgwNw89S+ZfSE0VzqkBmROv060V9fZgsBm5J9vC0lVwF9/CP1uoXEVB7Ix2djtGA==}
+    dev: false
+
+  /@j-l/request@1.0.0-beta.7:
+    resolution: {integrity: sha512-uZv3MmPz3R286sDO8r7NS3VDczQ1BZa1RXyDk9ofulZipB48iuUMKQ4XWZYQsTNQj/dESfzigEIs9ktgVYG29w==}
     dev: false
 
   /@jest/console@29.5.0:

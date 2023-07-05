@@ -14,11 +14,5 @@ export const addFileEntry = async (params: { type: number; name: string }) => {
 };
 
 export const removeFileEntry = async (id: string) => {
-  const result: any = await client.delete(
-    "/files/" + id,
-    {},
-    {
-      payload: {},
-    }
-  );
+  const result: any = await client.delete("/files/" + id);
 };
