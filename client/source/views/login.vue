@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import type { FormInstance, FormRules } from "element-plus";
+import { ElMessage, FormInstance, FormRules } from "element-plus";
 import { loginUser } from "~/services/user";
+import { useRouter } from "vue-router";
 
 const ruleFormRef = ref<FormInstance>();
-
+const router = useRouter()
 const ruleForm = reactive({
   username: "",
   password: "",
@@ -14,14 +15,19 @@ const rules = reactive<FormRules<typeof ruleForm>>({
   username: [{ required: true, message: "请输入账号", trigger: "blur" }],
   password: [{ required: true, message: "请输入密码", trigger: "blur" }],
 });
-
 const submitForm = (formEl: FormInstance | undefined) => {
 
   if (!formEl) return;
   formEl.validate(async (valid: any) => {
     if (valid) {
       const res = await loginUser(ruleForm)
-      console.log(res,"submit!");
+      if (res.code === 0) {
+        ElMessage({
+          message: '登录成功',
+          type: 'success',
+        })
+        router.push('/')
+      }
     } else {
       console.log("error submit!");
       return false;

@@ -1,6 +1,6 @@
-import * as http from "~/utils/https";
-const base ='http://localhost:3000'
-export async function loginUser(params: any) {
-  const response = await http.post<any>(base+"/users/login", params);
-  return response; 
-}
+import client from "@j-l/request";
+
+export const loginUser = async (params: { password: string; username: string }) => {
+  const result: any = await client.post("/auth/login", params);
+  return result.body
+};

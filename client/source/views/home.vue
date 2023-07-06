@@ -3,5 +3,8 @@ const name = "首页";
 </script>
 
 <template>
-  <div>{{ name }}</div>
+  <div>
+    <p>这是首页home</p>
+    {{ name }}
+  </div>
 </template>
