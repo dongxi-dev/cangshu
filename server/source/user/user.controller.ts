@@ -28,9 +28,4 @@ export class UserController {
     return this.userService.getUsers();
   }
 
-  @ApiTags('登录用户')
-  @Post('/login')
-  login(@Body() createCatDto: { userName: string; password: string }) {
-    return this.userService.verifyUser(createCatDto);
-  }
 }

@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { DBService } from '@j-l/nestjs-db';
+import * as session from 'express-session';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -19,7 +20,14 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   app.enableCors();
-
+  app.use(
+    session({
+      secret: 'keyboard cat', // 秘钥
+      name: 'file-suuid', // 生成cookie的名称
+      rolling: true,
+      cookie: { maxAge: 60000 }, //session的存储时间
+    }),
+  );
   await app.listen(3000);
 }
 bootstrap();

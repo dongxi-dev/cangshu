@@ -5,12 +5,14 @@ import {
   Delete,
   ExecutionContext,
   Get,
+  HttpException,
   Param,
   ParseIntPipe,
   Patch,
   Post,
   Put,
   Query,
+  Session,
   createParamDecorator,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -23,12 +25,18 @@ export class FileController {
   constructor(private fileService: FileService) {}
 
   @Get()
-  async getPage(@PageQuery() pageQuery: DTI.PageNote) {
+  async getPage(@PageQuery() pageQuery: DTI.PageNote, @Session() session) {
+    if (!session.uerid) {
+      throw new HttpException(`用户未登录`, 401);
+    }
     return this.fileService.getPage(pageQuery);
   }
 
   @Get(':id')
-  getOne() {
+  getOne(@Session() session) {
+    if (!session.uerid) {
+      throw new HttpException(`用户未登录`, 401);
+    }
     return {
       id: 1,
       name: '123.jpg',
