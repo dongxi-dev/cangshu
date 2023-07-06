@@ -13,6 +13,10 @@ export const addFileEntry = async (params: { type: number; name: string }) => {
   const result: any = await client.put("/files", params);
 };
 
+export const updateFileEntry = async (id: string, params: { name: string }) => {
+  const result: any = await client.patch("/files/" + id, params);
+};
+
 export const removeFileEntry = async (id: string) => {
   const result: any = await client.delete("/files/" + id);
 };

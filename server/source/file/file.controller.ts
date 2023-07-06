@@ -51,7 +51,12 @@ export class FileController {
     if (!numberId) {
       return;
     }
-    this.fileService.updateOne(numberId, body);
+    if (!body.name) {
+      return 400;
+    }
+    this.fileService.updateOne(numberId, {
+      name: body.name,
+    });
   }
 
   @Delete(':id')

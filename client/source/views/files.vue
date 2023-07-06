@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import { el } from "element-plus/es/locale/index.js";
 import { onMounted, reactive } from "vue";
-import { addFileEntry, getFilePage, removeFileEntry } from "~/services/file";
+import {
+  addFileEntry,
+  getFilePage,
+  removeFileEntry,
+  updateFileEntry,
+} from "~/services/file";
 
 const state = reactive({
   page: null as DTI.Page | null,
@@ -9,6 +15,7 @@ const state = reactive({
     keyword: "",
   } as DTI.PageNote,
   createFolderForm: {
+    id: "",
     name: "",
   },
 });
@@ -27,15 +34,23 @@ const onSearch = () => {
 
 onMounted(getPage);
 
-const onAddFolder = async () => {
-  await addFileEntry({
-    type: 0,
-    name: state.createFolderForm.name,
-  });
+const onEditFileEntry = async () => {
+  if (state.createFolderForm.id) {
+    // update file entry
+    await updateFileEntry(state.createFolderForm.id, {
+      name: state.createFolderForm.name,
+    });
+  } else {
+    await addFileEntry({
+      type: 0,
+      name: state.createFolderForm.name,
+    });
+  }
 
   getPage();
 
   state.createFolderForm.name = "";
+  state.createFolderForm.id = "";
 
   state.isCreateFolderDialogVisible = false;
 };
@@ -49,7 +64,16 @@ const onRemove = async (id: string) => {
   getPage();
 };
 
-const onEdit = () => {};
+const onEdit = (record: { id: string; name: string }) => {
+  state.isCreateFolderDialogVisible = true;
+  state.createFolderForm.id = record.id;
+  state.createFolderForm.name = record.name;
+};
+
+const onCreateFolder = () => {
+  state.isCreateFolderDialogVisible = true;
+  state.createFolderForm.id = "";
+};
 
 const onPreview = () => {};
 
@@ -63,23 +87,23 @@ const onDownload = (url: string) => {
     <ElRow>
       <ElCol :span="12">文件管理</ElCol>
       <ElCol :span="12">
-        <ElButton
-          type="primary"
-          @click="state.isCreateFolderDialogVisible = true"
-          >创建文件夹</ElButton
-        >
+        <ElButton type="primary" @click="onCreateFolder"> 创建文件夹 </ElButton>
         <el-dialog
           v-model="state.isCreateFolderDialogVisible"
-          title="Warning"
           width="30%"
           align-center
         >
           <span>
-            <ElInput v-model="state.createFolderForm.name" />
+            <ElInput
+              placeholder="编辑文件名/文件夹名"
+              v-model="state.createFolderForm.name"
+            />
           </span>
           <template #footer>
             <span class="dialog-footer">
-              <el-button type="primary" @click="onAddFolder"> 确认 </el-button>
+              <el-button type="primary" @click="onEditFileEntry">
+                确认
+              </el-button>
             </span>
           </template>
         </el-dialog>
@@ -106,7 +130,7 @@ const onDownload = (url: string) => {
               <el-button link type="primary" size="small"> 删除 </el-button>
             </template>
           </ElPopconfirm>
-          <el-button link type="primary" size="small" @click="onEdit"
+          <el-button link type="primary" size="small" @click="onEdit(scope.row)"
             >编辑</el-button
           >
           <ElButton
