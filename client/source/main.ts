@@ -12,6 +12,12 @@ client.config({
   contentType: "json",
   responseType: "json",
   onResponse(response) {
+    if (response.status === 401) {
+      ElMessage("未登录");
+      setTimeout(() => {
+        routes.push("/login");
+      }, 300);
+    }
     if (response.status > 399) {
       ElMessage("失败");
       throw new Error("请求异常");
