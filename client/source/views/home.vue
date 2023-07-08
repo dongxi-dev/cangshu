@@ -1,10 +1,12 @@
 <script setup lang="ts">
-const name = "首页";
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
+
+onMounted(() => {
+  router.replace('/workspace')
+});
 </script>
 
 <template>
-  <div>
-    <p>这是首页home</p>
-    {{ name }}
-  </div>
 </template>
