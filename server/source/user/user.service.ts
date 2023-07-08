@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Param } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { DBService } from '@j-l/nestjs-db';
 
@@ -15,11 +15,7 @@ export class UserService {
   }
 
   getOne(id: number) {
-    return this.db.user.findMany({
-      where: {
-        id,
-      },
-    });
+    return this.getUser({ id });
   }
 
   getUsers() {
@@ -29,12 +25,20 @@ export class UserService {
   createOne(): Promise<User> {
     return this.db.user.create({
       data: {
-        username: '' + Math.random(),
-        password: '' + Math.random(),
+        username: 'admin',
+        password: 'admin',
         name: 'Alice' + Math.random(),
         email: Math.random() + 'alice@prisma.io',
       },
     });
   }
 
+  verifyUser(@Param() data: { username: string; password: string }) {
+    // 其他验证逻辑可以在这里加
+    return this.getUser({ username: data.username });
+  }
+
+  private async getUser(@Param() where: { id?: number; username?: string }) {
+    return this.db.user.findUnique({ where });
+  }
 }

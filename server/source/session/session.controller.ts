@@ -14,12 +14,13 @@ export class SessionController {
   @ApiTags('登录用户')
   @Post('/login')
   async login(
-    @Body() data: { userName: string; password: string },
+    @Body() data: { username: string; password: string },
     @Session() session,
   ) {
     const dataUser = await this.sessionService.verifyUser(data);
     session.uerid = dataUser.id;
     session.username = dataUser.username;
+
     return {
       code: 0,
       msg: '登录成功',

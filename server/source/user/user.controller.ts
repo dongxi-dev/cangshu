@@ -20,12 +20,11 @@ export class UserController {
   @ApiTags('user')
   @Get(':id')
   getUser(@Param() param) {
-    return this.userService.getOne(param);
+    return this.userService.getOne(+param.id);
   }
 
   @Get()
   getUsers() {
     return this.userService.getUsers();
   }
-
 }
