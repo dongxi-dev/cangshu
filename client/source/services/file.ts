@@ -20,3 +20,9 @@ export const updateFileEntry = async (id: string, params: { name: string }) => {
 export const removeFileEntry = async (id: string) => {
   const result: any = await client.delete("/files/" + id);
 };
+
+export const removeBatchFileEntries = async (idList: string[]) => {
+  const result: any = await client.delete("/files/batch", {
+    idList,
+  });
+};

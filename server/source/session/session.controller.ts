@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Session } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Req,
+  Session,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { SessionService } from './session.service';
 import { UserService } from 'source/user/user.service';
@@ -16,9 +25,12 @@ export class SessionController {
   async login(
     @Body() data: { username: string; password: string },
     @Session() session,
+    @Req() request,
   ) {
+    console.log('request.session', request.session);
+    request.session.visits = '9999';
     const dataUser = await this.sessionService.verifyUser(data);
-    session.uerid = dataUser.id;
+    session.userId = dataUser.id;
     session.username = dataUser.username;
 
     return {
@@ -26,4 +38,10 @@ export class SessionController {
       msg: '登录成功',
     };
   }
+
+  @Delete()
+  async logout() {}
+
+  @Get()
+  async check() {}
 }

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { el } from "element-plus/es/locale/index.js";
 import { onMounted, reactive } from "vue";
 import {
   addFileEntry,
@@ -80,6 +79,10 @@ const onPreview = () => {};
 const onDownload = (url: string) => {
   window.open(url);
 };
+
+const handleSelectionChange = (value: { id: string }[]) => {
+  console.log(value);
+};
 </script>
 
 <template>
@@ -119,7 +122,8 @@ const onDownload = (url: string) => {
       <ElButton type="primary" @click="onSearch">搜索</ElButton>
     </ElSpace>
 
-    <ElTable :data="state.page?.list">
+    <ElTable :data="state.page?.list" @selection-change="handleSelectionChange">
+      <el-table-column type="selection" width="55" />
       <ElTableColumn prop="id" label="ID" width="180" />
       <ElTableColumn prop="name" label="文件名" width="180" />
       <ElTableColumn prop="createAt" label="创建时间" width="180" />

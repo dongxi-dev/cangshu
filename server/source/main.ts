@@ -26,6 +26,8 @@ async function bootstrap() {
       name: 'file-suuid', // 生成cookie的名称
       rolling: true,
       cookie: { maxAge: 60000 }, //session的存储时间
+      resave: false,
+      saveUninitialized: false,
     }),
   );
   await app.listen(3000);
