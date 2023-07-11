@@ -26,23 +26,19 @@ export class FileController {
   constructor(private fileService: FileService) {}
 
   @Get()
-  async getPage(
-    @PageQuery() pageQuery: DTI.PageNote,
-    @Session() session,
-    @Req() request,
-  ) {
-    console.log('request.session  222', request.session);
-    // if (!session.userId) {
-    //   throw new HttpException(`用户未登录`, 401);
-    // }
+  async getPage(@PageQuery() pageQuery: DTI.PageNote, @Session() session) {
+    console.log('session.userId', session.userId);
+    if (!session.userId) {
+      throw new HttpException(`用户未登录`, 401);
+    }
     return this.fileService.getPage(pageQuery);
   }
 
   @Get(':id')
   getOne(@Session() session) {
-    // if (!session.uerid) {
-    //   throw new HttpException(`用户未登录`, 401);
-    // }
+    if (!session.uerid) {
+      throw new HttpException(`用户未登录`, 401);
+    }
     return {
       id: 1,
       name: '123.jpg',

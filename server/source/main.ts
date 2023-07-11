@@ -19,7 +19,17 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
 
-  app.enableCors();
+  app.enableCors({
+    origin: 'http://localhost:5173',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: ['content-type', 'Authorization'],
+    exposedHeaders: ['Content-Range', 'X-Content-Range'],
+    credentials: true,
+    maxAge: 30000,
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  });
+
   app.use(
     session({
       secret: 'keyboard cat', // 秘钥

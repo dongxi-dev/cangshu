@@ -11,6 +11,7 @@ client.config({
   base: API_BASE_URL,
   contentType: "json",
   responseType: "json",
+  withCredentials: true,
   onResponse(response) {
     if (response.status === 401) {
       ElMessage("未登录");

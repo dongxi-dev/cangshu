@@ -3,45 +3,64 @@ import {
   Controller,
   Delete,
   Get,
-  Param,
   Post,
   Req,
   Session,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { SessionService } from './session.service';
-import { UserService } from 'source/user/user.service';
+import { type Request } from 'express';
+import { type Session as SessionClass } from 'express-session';
 
-@ApiTags('用户登录模块')
+@ApiTags('会话模块')
 @Controller('auth')
 export class SessionController {
-  constructor(
-    private sessionService: SessionService,
-    private userService: UserService,
-  ) {}
+  constructor(private sessionService: SessionService) {}
 
-  @ApiTags('登录用户')
-  @Post('/login')
+  @ApiTags('用户登录')
+  @Post()
   async login(
     @Body() data: { username: string; password: string },
-    @Session() session,
-    @Req() request,
+    @Session() session: SessionClass,
+    @Req() request: Request,
   ) {
-    console.log('request.session', request.session);
-    request.session.visits = '9999';
-    const dataUser = await this.sessionService.verifyUser(data);
-    session.userId = dataUser.id;
-    session.username = dataUser.username;
+    const user = await this.sessionService.login(data);
+    (session as any).userId = user.id;
 
-    return {
-      code: 0,
-      msg: '登录成功',
-    };
+    // 这里暂时写一下设置会话的逻辑， 后面可能需要单独 service 服务
+    // return new Promise((resolve, reject) => {
+    //   session.regenerate((error) => {
+    //     if (error) {
+    //       return reject(error);
+    //     }
+    //   });
+    //   (request.session as any).userId = user.id;
+    //   (request.session as any).userName = user.name;
+
+    //   request.session.save((error2) => {
+    //     if (error2) {
+    //       return reject(error2);
+    //     }
+
+    //     resolve(null);
+    //   });
+    // });
   }
 
   @Delete()
-  async logout() {}
+  async logout(@Session() session: SessionClass) {
+    return new Promise((resolve, reject) => {
+      session.destroy((error) => {
+        if (error) {
+          reject(error);
+        }
+        resolve(null);
+      });
+    });
+  }
 
-  @Get()
-  async check() {}
+  @Get('check')
+  async check(@Session() session: SessionClass) {
+    return !!(session as any).userId;
+  }
 }

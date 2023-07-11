@@ -5,7 +5,7 @@ import { loginUser } from "~/services/user";
 import { useRouter } from "vue-router";
 
 const ruleFormRef = ref<FormInstance>();
-const router = useRouter()
+const router = useRouter();
 const ruleForm = reactive({
   username: "",
   password: "",
@@ -16,18 +16,15 @@ const rules = reactive<FormRules<typeof ruleForm>>({
   password: [{ required: true, message: "请输入密码", trigger: "blur" }],
 });
 const submitForm = (formEl: FormInstance | undefined) => {
-
   if (!formEl) return;
   formEl.validate(async (valid: any) => {
     if (valid) {
-      const res = await loginUser(ruleForm)
-      if (res.code === 0) {
-        ElMessage({
-          message: '登录成功',
-          type: 'success',
-        })
-        router.push('/')
-      }
+      await loginUser(ruleForm);
+      ElMessage({
+        message: "登录成功",
+        type: "success",
+      });
+      router.push("/");
     } else {
       console.log("error submit!");
       return false;
@@ -41,17 +38,38 @@ const submitForm = (formEl: FormInstance | undefined) => {
     <div :class="$style.loginWrap">
       <div>
         <div :class="$style.title">仓鼠资产管理登陆</div>
-        <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" label-width="120px" label-position="top"
-          :class="$style.login_main">
+        <el-form
+          ref="ruleFormRef"
+          :model="ruleForm"
+          status-icon
+          :rules="rules"
+          label-width="120px"
+          label-position="top"
+          :class="$style.login_main"
+        >
           <el-form-item label="账号" prop="username">
-            <el-input style="height: 40px" v-model="ruleForm.username" placeholder="请输入账号" />
+            <el-input
+              style="height: 40px"
+              v-model="ruleForm.username"
+              placeholder="请输入账号"
+            />
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input v-model="ruleForm.password" type="password" autocomplete="off" style="height: 40px"
-              placeholder="请输入密码" />
+            <el-input
+              v-model="ruleForm.password"
+              type="password"
+              autocomplete="off"
+              style="height: 40px"
+              placeholder="请输入密码"
+            />
           </el-form-item>
           <el-form-item>
-            <el-button style="width: 100%; height: 40px" type="primary" @click="submitForm(ruleFormRef)">登录</el-button>
+            <el-button
+              style="width: 100%; height: 40px"
+              type="primary"
+              @click="submitForm(ruleFormRef)"
+              >登录</el-button
+            >
           </el-form-item>
         </el-form>
       </div>
