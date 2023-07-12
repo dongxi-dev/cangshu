@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["nestjs", "Pinia", "postcss", "predev", "unplugin"]
+  "cSpell.words": [
+    "cangshu",
+    "nestjs",
+    "Pinia",
+    "postcss",
+    "predev",
+    "qiniu",
+    "unplugin"
+  ]
 }

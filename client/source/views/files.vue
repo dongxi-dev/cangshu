@@ -5,6 +5,7 @@ import {
   getFilePage,
   removeFileEntry,
   updateFileEntry,
+  uploadFile,
 } from "~/services/file";
 
 const state = reactive({
@@ -83,6 +84,11 @@ const onDownload = (url: string) => {
 const handleSelectionChange = (value: { id: string }[]) => {
   console.log(value);
 };
+
+const onBeforeUpload = (file: File) => {
+  uploadFile(file);
+  return false;
+};
 </script>
 
 <template>
@@ -110,7 +116,9 @@ const handleSelectionChange = (value: { id: string }[]) => {
             </span>
           </template>
         </el-dialog>
-        <ElButton type="primary">上传</ElButton>
+        <el-upload class="upload-demo" :beforeUpload="onBeforeUpload">
+          <ElButton type="primary">上传</ElButton>
+        </el-upload>
       </ElCol>
     </ElRow>
     <ElSpace :size="16">

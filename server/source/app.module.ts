@@ -5,6 +5,8 @@ import { AppService } from './app.service';
 import { FileModule } from './file/file.module';
 import { UserModule } from './user/user.module';
 import { SessionModule } from './session/session.module';
+import { FileTransferController } from './file-transfer/file-transfer.controller';
+import { FileTransferModule } from './file-transfer/file-transfer.module';
 
 @Module({
   imports: [
@@ -14,6 +16,7 @@ import { SessionModule } from './session/session.module';
     FileModule,
     UserModule,
     SessionModule,
+    FileTransferModule,
   ],
   controllers: [AppController],
   providers: [AppService],
