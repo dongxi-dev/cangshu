@@ -51,7 +51,8 @@ export class FileController {
     return this.fileService.addOne({
       type: 0,
       name: body.name || 'not name',
-      size: 0,
+      size: body.size,
+      url: body.url,
     });
   }
 

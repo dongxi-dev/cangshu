@@ -1,15 +1,22 @@
 import client from "@j-l/request";
-import { upload } from "qiniu-js";
+import { upload, region, getUploadUrl } from "qiniu-js";
 
 export async function getFilePage(
   params?: Partial<DTI.PageNote>
 ): Promise<DTI.Page> {
   const result: any = await client.get("/files", params);
 
+  console.log(JSON.stringify(result), 999);
+
   return result;
 }
 
-export const addFileEntry = async (params: { type: number; name: string }) => {
+export const addFileEntry = async (params: {
+  type: number;
+  name: string;
+  size?: number;
+  url?: string;
+}) => {
   // 暂时只考虑 文件夹
   const result: any = await client.put("/files", params);
 };
@@ -29,10 +36,11 @@ export const removeBatchFileEntries = async (idList: string[]) => {
 };
 
 export const uploadFile = async (file: File) => {
-  const token: any = await client.get("/file-transfer/token");
+  const { token }: any = await client.get("/file-transfer/token");
+
   const observable = upload(
     file,
-    Math.random() + "test.jpg",
+    "test/" + Math.random() + "test.jpg",
     token,
     undefined,
     {
@@ -40,12 +48,17 @@ export const uploadFile = async (file: File) => {
     }
   );
 
-  return new Promise((resolve, reject) => {
+  return new Promise<string>((resolve, reject) => {
     observable.subscribe({
-      error: reject,
+      error: (error) => {
+        console.log(3333333, error);
+
+        reject(error);
+      },
       complete(data) {
+        const base = "http://cdn99.jiluo.cc/";
         console.log(data);
-        resolve(data);
+        resolve(base + data.key);
       },
     });
   });

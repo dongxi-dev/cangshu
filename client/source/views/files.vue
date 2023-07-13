@@ -21,11 +21,15 @@ const state = reactive({
 });
 
 const getPage = async (number?: number) => {
-  state.page = await getFilePage({
+  console.log(7777777777);
+  const page = await getFilePage({
     number: number || state.page?.note.number || 1,
     size: 10,
     keyword: state.queryNote.keyword,
   });
+  console.log(8888888);
+  console.log(JSON.stringify(page, null, 2));
+  state.page = page;
 };
 
 const onSearch = () => {
@@ -85,8 +89,16 @@ const handleSelectionChange = (value: { id: string }[]) => {
   console.log(value);
 };
 
-const onBeforeUpload = (file: File) => {
-  uploadFile(file);
+const onBeforeUpload = async (file: File) => {
+  const url = await uploadFile(file);
+
+  await addFileEntry({
+    name: file.name,
+    type: 1,
+    url,
+  });
+
+  getPage();
   return false;
 };
 </script>
@@ -130,7 +142,11 @@ const onBeforeUpload = (file: File) => {
       <ElButton type="primary" @click="onSearch">搜索</ElButton>
     </ElSpace>
 
-    <ElTable :data="state.page?.list" @selection-change="handleSelectionChange">
+    <ElTable
+      :data="state.page?.list"
+      row-key="id"
+      @selection-change="handleSelectionChange"
+    >
       <el-table-column type="selection" width="55" />
       <ElTableColumn prop="id" label="ID" width="180" />
       <ElTableColumn prop="name" label="文件名" width="180" />
@@ -149,7 +165,7 @@ const onBeforeUpload = (file: File) => {
             link
             type="primary"
             size="small"
-            @click="onDownload(scope.row.id)"
+            @click="onDownload(scope.row.url)"
           >
             下载
           </ElButton>
