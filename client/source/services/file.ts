@@ -2,7 +2,7 @@ import client from "@j-l/request";
 import { upload, region, getUploadUrl } from "qiniu-js";
 
 export async function getFilePage(
-  params?: Partial<DTI.PageNote>
+  params?: Partial<DTI.PageNote<{ parentId?: string }>>
 ): Promise<DTI.Page> {
   const result: any = await client.get("/files", params);
 
