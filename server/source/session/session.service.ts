@@ -9,7 +9,6 @@ export class SessionService {
 
   async login(data: { username: string; password: string }) {
     const endPassword = cryptoPassword(data.password);
-    console.log(3333, endPassword);
     const user = await this.db.user.findFirst({
       where: {
         username: data.username,
@@ -21,8 +20,4 @@ export class SessionService {
     }
     return user;
   }
-
-  async logout() {}
-
-  async check() {}
 }

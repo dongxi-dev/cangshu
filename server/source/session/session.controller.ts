@@ -26,7 +26,7 @@ export class SessionController {
   ) {
     const user = await this.sessionService.login(data);
     (session as any).userId = user.id;
-
+    
     // 这里暂时写一下设置会话的逻辑， 后面可能需要单独 service 服务
     // return new Promise((resolve, reject) => {
     //   session.regenerate((error) => {
@@ -47,7 +47,7 @@ export class SessionController {
     // });
   }
 
-  @Delete()
+  @Get('out')
   async logout(@Session() session: SessionClass) {
     return new Promise((resolve, reject) => {
       session.destroy((error) => {

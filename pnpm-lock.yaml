@@ -17,6 +17,9 @@ importers:
       '@J-l/request':
         specifier: npm:@j-l/request@1.0.0-beta.7
         version: /@j-l/request@1.0.0-beta.7
+      '@element-plus/icons-vue':
+        specifier: ^2.1.0
+        version: 2.1.0(vue@3.3.4)
       '@j-l/request':
         specifier: 1.0.0-beta.6
         version: 1.0.0-beta.6

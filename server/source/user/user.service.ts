@@ -1,6 +1,7 @@
 import { Injectable, Param } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { DBService } from '@j-l/nestjs-db';
+import { cryptoPassword } from 'source/utils';
 
 @Injectable()
 export class UserService {
@@ -26,7 +27,7 @@ export class UserService {
     return this.db.user.create({
       data: {
         username: 'admin',
-        password: 'admin',
+        password: cryptoPassword('admin'),
         name: 'Alice' + Math.random(),
         email: Math.random() + 'alice@prisma.io',
       },

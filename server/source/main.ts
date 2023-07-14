@@ -35,7 +35,7 @@ async function bootstrap() {
       secret: 'keyboard cat', // 秘钥
       name: 'file-suuid', // 生成cookie的名称
       rolling: true,
-      cookie: { maxAge: 60000 }, //session的存储时间
+      cookie: { maxAge: 600000 }, //session的存储时间
       resave: false,
       saveUninitialized: false,
     }),

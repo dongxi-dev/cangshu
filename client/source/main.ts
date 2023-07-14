@@ -1,5 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
+import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import ElementPlus, { ElMessage } from "element-plus";
 import client from "@j-l/request";
 import "element-plus/dist/index.css";
@@ -27,10 +28,13 @@ client.config({
   },
 });
 
-createApp(DefaultLayout)
+const app = createApp(DefaultLayout)
   .use(createPinia())
   .use(routes)
   .use(ElementPlus)
   .mount("#app");
 
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component);
+}
 console.log(APP_ID);

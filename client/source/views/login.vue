@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { reactive, ref } from "vue";
-import { ElMessage, FormInstance, FormRules } from "element-plus";
-import { loginUser } from "~/services/user";
+import { onMounted, reactive, ref } from "vue";
+import { ElMessage, ElMessageBox, FormInstance, FormRules } from "element-plus";
+import {
+  loginUser,
+  getUserList,
+  createOneUser,
+  checkLogin,
+} from "~/services/user";
 import { useRouter } from "vue-router";
 
 const ruleFormRef = ref<FormInstance>();
@@ -19,6 +24,23 @@ const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   formEl.validate(async (valid: any) => {
     if (valid) {
+      let userList = await getUserList();
+      if (!userList?.length) {
+        ElMessageBox({
+          title: "提示",
+          message: "暂无账号，将初始化创建一个账号为admin，密码为admin的账号",
+          showCancelButton: true,
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+        }).then(async (action) => {
+          await createOneUser();
+          ElMessage({
+            message: "创建成功",
+            type: "success",
+          });
+        });
+        return;
+      }
       await loginUser(ruleForm);
       ElMessage({
         message: "登录成功",
@@ -26,11 +48,23 @@ const submitForm = (formEl: FormInstance | undefined) => {
       });
       router.push("/");
     } else {
-      console.log("error submit!");
       return false;
     }
   });
 };
+const checkIsLogin = async () => {
+  const res = await checkLogin();
+  if (res) {
+    ElMessage({
+      message: "已登录，即将跳转首页",
+      type: "success",
+      onClose() {
+        router.push("/");
+      },
+    });
+  }
+};
+// onMounted(checkIsLogin);
 </script>
 
 <template>
