@@ -64,7 +64,7 @@ const checkIsLogin = async () => {
     });
   }
 };
-// onMounted(checkIsLogin);
+onMounted(checkIsLogin);
 </script>
 
 <template>
