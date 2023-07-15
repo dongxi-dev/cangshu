@@ -11,7 +11,10 @@ import {
 import { createHash } from 'node:crypto';
 
 export const PageQuery = createParamDecorator(
-  (data: string | undefined, ctx: ExecutionContext): DTI.PageNote => {
+  (
+    getExtra: undefined | ((query: any) => object),
+    ctx: ExecutionContext,
+  ): DTI.PageNote => {
     const request = ctx.switchToHttp().getRequest();
 
     const { number, size, keyword } = request.query;
@@ -21,6 +24,7 @@ export const PageQuery = createParamDecorator(
       keyword,
       sort: '',
       order: '',
+      ...getExtra?.(request.query),
     };
   },
 );

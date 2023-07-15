@@ -51,6 +51,7 @@ export class FileService {
     name: string;
     size?: number;
     url?: string;
+    parentId?: number;
   }) {
     return this.db.file.create({
       data: {
@@ -58,6 +59,7 @@ export class FileService {
         name: data.name,
         size: data.size,
         url: data.url,
+        parentId: data.parentId,
         // createBy:
         // updateBy:
       },
@@ -110,7 +112,7 @@ export class FileService {
         },
       },
       data: {
-        removeAt: Date(),
+        removeAt: new Date().toISOString(),
         // removeBy:
       },
     });

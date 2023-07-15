@@ -12,10 +12,12 @@ export async function getFilePage(
 }
 
 export const addFileEntry = async (params: {
+  // type 0 文件夹 1 图片 2 视频 3 音频 10 文本 11 html 12 css 13 js 14 json 15 xml 16 md 17 yaml 18 ts 19 svg 30 pdf 31 7 Word 32 Excel 33 Ppt 99 未知
   type: number;
   name: string;
   size?: number;
   url?: string;
+  parentId?: string;
 }) => {
   // 暂时只考虑 文件夹
   const result: any = await client.put("/files", params);

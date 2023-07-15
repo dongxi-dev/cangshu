@@ -5,6 +5,7 @@ import { useRoute } from "vue-router";
 import {
   addFileEntry,
   getFilePage,
+  removeBatchFileEntries,
   removeFileEntry,
   updateFileEntry,
   uploadFile,
@@ -13,7 +14,7 @@ import {
 const route = useRoute();
 
 const state = reactive({
-  page: null as DTI.Page | null,
+  page: null as DTI.Page<any, { parentId?: string }> | null,
   isCreateFolderDialogVisible: false,
   queryNote: {
     keyword: "",
@@ -22,18 +23,16 @@ const state = reactive({
     id: "",
     name: "",
   },
+  selected: [] as any[],
 });
 
 const getPage = async (number?: number, parentId?: string) => {
-  console.log(7777777777);
   const page = await getFilePage({
     number: number || state.page?.note.number || 1,
     size: 10,
     keyword: state.queryNote.keyword,
-    parentId,
+    parentId: parentId ?? (route.query.id as string),
   });
-  console.log(8888888);
-  console.log(JSON.stringify(page, null, 2));
   state.page = page;
 };
 
@@ -53,6 +52,7 @@ const onEditFileEntry = async () => {
     await addFileEntry({
       type: 0,
       name: state.createFolderForm.name,
+      parentId: route.query.id as string,
     });
   }
 
@@ -90,27 +90,44 @@ const onDownload = (url: string) => {
   window.open(url);
 };
 
-const handleSelectionChange = (value: { id: string }[]) => {
-  console.log(value);
+const onSelectionChange = (value: { id: string }[]) => {
+  state.selected = value;
 };
 
 const onBeforeUpload = async (file: File) => {
   const url = await uploadFile(file);
+  let type = 99;
+  if (file.type.startsWith("image/")) {
+    type = 1;
+  }
 
   await addFileEntry({
     name: file.name,
-    type: 1,
+    type,
     url,
+    size: file.size,
+    parentId: route.query.id as string,
   });
 
   getPage();
   return false;
 };
 
+const onBatchRemove = async () => {
+  //
+  const idList = state.selected.map((i) => i.id);
+  if (!idList.length) {
+    ElMessage("请选择要删除的项");
+    return;
+  }
+  await removeBatchFileEntries(idList);
+  getPage();
+};
+
 watch(
   () => route.query.id as string,
   () => {
-    getPage(1, route.query.id as string);
+    getPage(1, (route.query.id as string) || "");
   }
 );
 </script>
@@ -126,7 +143,10 @@ watch(
     "
   >
     <div style="display: flex; align-items: flex-start">
-      <div style="line-height: 32px; margin: 0 auto 0 0">文件管理</div>
+      <div style="line-height: 32px; margin: 0 auto 0 0">
+        <ElButton v-if="$route.query.id" @click="$router.back()">返回</ElButton>
+        文件管理
+      </div>
       <ElButton type="primary" @click="onCreateFolder" style="margin: 0 16px"
         >创建文件夹</ElButton
       >
@@ -169,22 +189,43 @@ watch(
       </ElSpace>
     </div>
 
+    <div style="display: flex; align-items: center; justify-content: flex-end">
+      <div>
+        <ElPopconfirm title="确认删除？" @confirm="onBatchRemove">
+          <template #reference>
+            <el-button>批量删除</el-button>
+          </template>
+        </ElPopconfirm>
+      </div>
+    </div>
+
     <ElTable
       :data="state.page?.list"
       row-key="id"
-      @selection-change="handleSelectionChange"
+      @selectionChange="onSelectionChange"
       style="flex: 1; overflow-y: auto; width: 100%"
     >
       <el-table-column type="selection" width="50" />
       <ElTableColumn prop="id" label="ID" width="80" />
-      <ElTableColumn prop="name" label="文件名">
+      <ElTableColumn prop="type" label="文件类型" width="80">
         <template #default="scope">
-          <RouterLink :to="`/workspace/files?id=${scope.row.id}`">
-            {{ scope.row.name }}
-          </RouterLink>
+          {{ scope.row.type }}
         </template>
       </ElTableColumn>
-      <ElTableColumn prop="size" label="文件尺寸" width="100" />
+      <ElTableColumn prop="name" label="文件名">
+        <template #default="scope">
+          <RouterLink
+            v-if="scope.row.type === 0"
+            :to="`/workspace/files?id=${scope.row.id}`"
+          >
+            {{ scope.row.name }}
+          </RouterLink>
+          <span v-else>{{ scope.row.name }}</span>
+        </template>
+      </ElTableColumn>
+      <ElTableColumn prop="size" label="文件尺寸" width="100">
+        <template #default="scope">{{ scope.row.size }}B</template>
+      </ElTableColumn>
       <ElTableColumn prop="createAt" label="创建时间" width="220" />
       <ElTableColumn prop="" label="操作" width="180">
         <template #default="scope">
@@ -206,10 +247,17 @@ watch(
             type="primary"
             size="small"
             @click="onDownload(scope.row.url)"
+            v-if="scope.row.type !== 0"
           >
             下载
           </ElButton>
-          <ElButton link type="primary" size="small" @click="onPreview">
+          <ElButton
+            link
+            type="primary"
+            size="small"
+            @click="onPreview"
+            v-if="scope.row.type !== 0"
+          >
             预览
           </ElButton>
         </template>

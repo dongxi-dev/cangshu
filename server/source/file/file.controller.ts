@@ -26,7 +26,13 @@ export class FileController {
   constructor(private fileService: FileService) {}
 
   @Get()
-  async getPage(@PageQuery() pageQuery: DTI.PageNote, @Session() session) {
+  async getPage(
+    @PageQuery((query) => ({
+      parentId: Number(query.parentId) || undefined,
+    }))
+    pageQuery: DTI.PageNote<{ parentId: number }>,
+    @Session() session,
+  ) {
     console.log('session.userId', session.userId);
     if (!session.userId) {
       throw new HttpException(`用户未登录`, 401);
@@ -49,10 +55,11 @@ export class FileController {
   @Put()
   addOne(@Body() body: any) {
     return this.fileService.addOne({
-      type: 0,
+      type: body.type,
       name: body.name || 'not name',
       size: body.size,
       url: body.url,
+      parentId: Number(body.parentId) || undefined,
     });
   }
 
@@ -71,8 +78,10 @@ export class FileController {
   }
 
   @Delete('batch')
-  removeMany(@Query('idList') idList: string) {
-    // this.fileService.removeMany([])
+  removeMany(@Query('idList') idList: string[]) {
+    this.fileService.removeMany(
+      idList.map((i) => Number(i)).filter((i) => i > 0),
+    );
   }
 
   @Delete(':id')
