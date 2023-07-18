@@ -7,6 +7,9 @@ import * as session from 'express-session';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  console.log(3232, process.env.DATABASE_URL);
+  console.log(3232, process.env.__APP_ID__);
+
   const prismaService = app.get(DBService);
   await prismaService.enableShutdownHooks(app);
 
