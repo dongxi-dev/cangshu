@@ -16,7 +16,7 @@ import {
   Session,
   createParamDecorator,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags, ApiOperation } from '@nestjs/swagger';
 import { PageQuery } from 'source/utils';
 import { FileService } from './file.service';
 
@@ -25,6 +25,7 @@ import { FileService } from './file.service';
 export class FileController {
   constructor(private fileService: FileService) {}
 
+  @ApiOperation({ summary: '获取目录项分页' })
   @Get()
   async getPage(
     @PageQuery((query) => ({
@@ -40,6 +41,7 @@ export class FileController {
     return this.fileService.getPage(pageQuery);
   }
 
+  @ApiOperation({ summary: '获取目录项信息' })
   @Get(':id')
   getOne(@Session() session) {
     if (!session.uerid) {
@@ -52,6 +54,7 @@ export class FileController {
     };
   }
 
+  @ApiOperation({ summary: '添加目录项' })
   @Put()
   addOne(@Body() body: any) {
     return this.fileService.addOne({
@@ -63,6 +66,7 @@ export class FileController {
     });
   }
 
+  @ApiOperation({ summary: '更新目录项' })
   @Patch(':id')
   updateOne(@Param('id') id: string, @Body() body: any) {
     const numberId = Number(id);
@@ -77,13 +81,7 @@ export class FileController {
     });
   }
 
-  @Delete('batch')
-  removeMany(@Query('idList') idList: string[]) {
-    this.fileService.removeMany(
-      idList.map((i) => Number(i)).filter((i) => i > 0),
-    );
-  }
-
+  @ApiOperation({ summary: '删除目录项' })
   @Delete(':id')
   removeOne(@Param('id') id: string) {
     console.log(33, id);
@@ -92,5 +90,13 @@ export class FileController {
       return;
     }
     this.fileService.removeOne(numberId);
+  }
+
+  @ApiOperation({ summary: '批量删除目录项' })
+  @Delete('batch')
+  removeMany(@Query('idList') idList: string[]) {
+    this.fileService.removeMany(
+      idList.map((i) => Number(i)).filter((i) => i > 0),
+    );
   }
 }

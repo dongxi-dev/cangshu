@@ -7,5 +7,7 @@
     "predev",
     "qiniu",
     "unplugin"
-  ]
+  ],
+  "spellright.language": ["en"],
+  "spellright.documentTypes": ["markdown", "latex", "plaintext", "typescript"]
 }

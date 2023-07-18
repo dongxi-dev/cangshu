@@ -14,15 +14,12 @@ importers:
 
   client:
     dependencies:
-      '@J-l/request':
-        specifier: npm:@j-l/request@1.0.0-beta.7
-        version: /@j-l/request@1.0.0-beta.7
       '@element-plus/icons-vue':
         specifier: ^2.1.0
         version: 2.1.0(vue@3.3.4)
       '@j-l/request':
-        specifier: 1.0.0-beta.6
-        version: 1.0.0-beta.6
+        specifier: 1.0.0-beta.7
+        version: 1.0.0-beta.7
       '@tanstack/vue-query':
         specifier: ^4.29.20
         version: 4.29.20(vue@3.3.4)
@@ -877,10 +874,6 @@ packages:
     dependencies:
       '@nestjs/common': 10.0.0(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@prisma/client': 4.16.2(prisma@4.16.1)
-    dev: false
-
-  /@j-l/request@1.0.0-beta.6:
-    resolution: {integrity: sha512-dmph7hTY5mZzIkl44g/aFfNgwNw89S+ZfSE0VzqkBmROv060V9fZgsBm5J9vC0lVwF9/CP1uoXEVB7Ix2djtGA==}
     dev: false
 
   /@j-l/request@1.0.0-beta.7:
