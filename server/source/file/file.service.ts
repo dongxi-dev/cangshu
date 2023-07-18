@@ -1,6 +1,6 @@
 import { DBService } from '@j-l/nestjs-db';
+import { ApiOperation } from '@nestjs/swagger';
 import { Injectable } from '@nestjs/common';
-import { FilePayload } from '@j-l/nestjs-db';
 
 @Injectable()
 export class FileService {
@@ -9,7 +9,7 @@ export class FileService {
   async getPage(note: DTI.PageNote<{ parentId?: number }>) {
     const where = {
       parentId: {
-        equals: note.parentId,
+        equals: note.parentId || null,
       },
       name: {
         contains: note.keyword,
@@ -28,13 +28,13 @@ export class FileService {
           // [note.sort]: note.order,
           createAt: 'desc',
         },
-        include: {
-          children: {
-            include: {
-              children: true, // 嵌套有问题
-            },
-          },
-        },
+        // include: {
+        //   children: {
+        //     include: {
+        //       children: true, // 嵌套有问题
+        //     },
+        //   },
+        // },
       }),
       this.db.file.count({ where }),
     ]);
