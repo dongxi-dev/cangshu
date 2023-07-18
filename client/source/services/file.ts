@@ -28,13 +28,25 @@ export const updateFileEntry = async (id: string, params: { name: string }) => {
 };
 
 export const removeFileEntry = async (id: string) => {
-  const result: any = await client.delete("/files/" + id);
+  const result: any = await client.delete(
+    "/files/" + id,
+    {},
+    {
+      payload: {},
+    }
+  );
 };
 
 export const removeBatchFileEntries = async (idList: string[]) => {
-  const result: any = await client.delete("/files/batch", {
-    idList,
-  });
+  const result: any = await client.delete(
+    "/files/batch",
+    {
+      idList,
+    },
+    {
+      payload: {},
+    }
+  );
 };
 
 export const uploadFile = async (file: File) => {
