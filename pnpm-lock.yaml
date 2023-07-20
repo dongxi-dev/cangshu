@@ -11,6 +11,12 @@ importers:
       '@j-l/dti':
         specifier: 1.0.0-beta.3
         version: 1.0.0-beta.3
+      '@j-l/prettier-config':
+        specifier: 1.0.0-alpha.2
+        version: 1.0.0-alpha.2(prettier@3.0.0)
+      prettier:
+        specifier: ^3.0.0
+        version: 3.0.0
 
   client:
     dependencies:
@@ -875,6 +881,14 @@ packages:
       '@nestjs/common': 10.0.0(reflect-metadata@0.1.13)(rxjs@7.8.1)
       '@prisma/client': 4.16.2(prisma@4.16.1)
     dev: false
+
+  /@j-l/prettier-config@1.0.0-alpha.2(prettier@3.0.0):
+    resolution: {integrity: sha512-/O9fq25ogN4mj08SfsRQh3Q2ZAZSKybprKWoQmsYRY1dhB+k3IpKl8+j18fXqp+gjDKTEmG4OIWpG09vGceStA==}
+    peerDependencies:
+      prettier: '>= 3.0.0'
+    dependencies:
+      prettier: 3.0.0
+    dev: true
 
   /@j-l/request@1.0.0-beta.7:
     resolution: {integrity: sha512-uZv3MmPz3R286sDO8r7NS3VDczQ1BZa1RXyDk9ofulZipB48iuUMKQ4XWZYQsTNQj/dESfzigEIs9ktgVYG29w==}
@@ -5128,6 +5142,12 @@ packages:
   /prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
+    hasBin: true
+    dev: true
+
+  /prettier@3.0.0:
+    resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
+    engines: {node: '>=14'}
     hasBin: true
     dev: true
 
