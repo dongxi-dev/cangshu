@@ -1,14 +1,6 @@
-import {
-  Controller,
-  DefaultValuePipe,
-  ExecutionContext,
-  Get,
-  ParseIntPipe,
-  Post,
-  Query,
-  createParamDecorator,
-} from '@nestjs/common';
 import { createHash } from 'node:crypto';
+import { ExecutionContext, createParamDecorator } from '@nestjs/common';
+import { PASSWORD_SALT } from '../constants';
 
 export const PageQuery = createParamDecorator(
   (
@@ -29,7 +21,7 @@ export const PageQuery = createParamDecorator(
   },
 );
 
-export const cryptoPassword = (password: string, salt = 'a59abbe56e') => {
+export const cryptoPassword = (password: string, salt = PASSWORD_SALT) => {
   return createHash('md5').update(`${password}:${salt}`).digest('hex');
 };
 

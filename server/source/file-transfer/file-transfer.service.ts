@@ -1,21 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import { rs, auth } from 'qiniu';
+import { ACCESS_KEY, BUCKET_NAME, SECRET_KEY } from '../constants';
 
-import * as qiniu from 'qiniu';
-
-const accessKey = 'AT3hlQI24ivp7V3E6yUBQYWa2mkmSlZQOmEnYEU3';
-const secretKey = 'TKYRx1MBfwlxgoAgoYubEdAQuEM3Y1c140vKiiol';
-const mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
-
-// const bucket = 'test-cangshu';
-const bucket = 'www-jiluo-cc';
+const mac = new auth.digest.Mac(ACCESS_KEY, SECRET_KEY);
 
 @Injectable()
 export class FileTransferService {
   getToken() {
-    const token = new qiniu.rs.PutPolicy({
-      scope: bucket,
+    const token = new rs.PutPolicy({
+      scope: BUCKET_NAME,
       expires: 7200,
     }).uploadToken(mac);
+
     return { token };
   }
 }
