@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { watch } from "vue";
-import { onMounted, reactive } from "vue";
-import { useRoute } from "vue-router";
+import { watch } from 'vue'
+import { onMounted, reactive } from 'vue'
+import { useRoute } from 'vue-router'
 import {
   addFileEntry,
   getFilePage,
@@ -9,22 +9,22 @@ import {
   removeFileEntry,
   updateFileEntry,
   uploadFile,
-} from "~/services/file";
+} from '~/services/file'
 
-const route = useRoute();
+const route = useRoute()
 
 const state = reactive({
   page: null as DTI.Page<any, { parentId?: string }> | null,
   isCreateFolderDialogVisible: false,
   queryNote: {
-    keyword: "",
+    keyword: '',
   } as DTI.PageNote,
   createFolderForm: {
-    id: "",
-    name: "",
+    id: '',
+    name: '',
   },
   selected: [] as any[],
-});
+})
 
 const getPage = async (number?: number, parentId?: string) => {
   const page = await getFilePage({
@@ -32,73 +32,73 @@ const getPage = async (number?: number, parentId?: string) => {
     size: 10,
     keyword: state.queryNote.keyword,
     parentId: parentId ?? (route.query.id as string),
-  });
-  state.page = page;
-};
+  })
+  state.page = page
+}
 
 const onSearch = () => {
-  getPage(1);
-};
+  getPage(1)
+}
 
-onMounted(getPage);
+onMounted(getPage)
 
 const onEditFileEntry = async () => {
   if (state.createFolderForm.id) {
     // update file entry
     await updateFileEntry(state.createFolderForm.id, {
       name: state.createFolderForm.name,
-    });
+    })
   } else {
     await addFileEntry({
       type: 0,
       name: state.createFolderForm.name,
       parentId: route.query.id as string,
-    });
+    })
   }
 
-  getPage();
+  getPage()
 
-  state.createFolderForm.name = "";
-  state.createFolderForm.id = "";
+  state.createFolderForm.name = ''
+  state.createFolderForm.id = ''
 
-  state.isCreateFolderDialogVisible = false;
-};
+  state.isCreateFolderDialogVisible = false
+}
 
 const onPageChange = (number: number) => {
-  getPage(number);
-};
+  getPage(number)
+}
 
 const onRemove = async (id: string) => {
-  await removeFileEntry(id);
-  getPage();
-};
+  await removeFileEntry(id)
+  getPage()
+}
 
 const onEdit = (record: { id: string; name: string }) => {
-  state.isCreateFolderDialogVisible = true;
-  state.createFolderForm.id = record.id;
-  state.createFolderForm.name = record.name;
-};
+  state.isCreateFolderDialogVisible = true
+  state.createFolderForm.id = record.id
+  state.createFolderForm.name = record.name
+}
 
 const onCreateFolder = () => {
-  state.isCreateFolderDialogVisible = true;
-  state.createFolderForm.id = "";
-};
+  state.isCreateFolderDialogVisible = true
+  state.createFolderForm.id = ''
+}
 
-const onPreview = () => {};
+const onPreview = () => {}
 
 const onDownload = (url: string) => {
-  window.open(url);
-};
+  window.open(url)
+}
 
 const onSelectionChange = (value: { id: string }[]) => {
-  state.selected = value;
-};
+  state.selected = value
+}
 
 const onBeforeUpload = async (file: File) => {
-  const url = await uploadFile(file);
-  let type = 99;
-  if (file.type.startsWith("image/")) {
-    type = 1;
+  const url = await uploadFile(file)
+  let type = 99
+  if (file.type.startsWith('image/')) {
+    type = 1
   }
 
   await addFileEntry({
@@ -107,29 +107,29 @@ const onBeforeUpload = async (file: File) => {
     url,
     size: file.size,
     parentId: route.query.id as string,
-  });
+  })
 
-  getPage();
-  return false;
-};
+  getPage()
+  return false
+}
 
 const onBatchRemove = async () => {
   //
-  const idList = state.selected.map((i) => i.id);
+  const idList = state.selected.map(i => i.id)
   if (!idList.length) {
-    ElMessage("请选择要删除的项");
-    return;
+    ElMessage('请选择要删除的项')
+    return
   }
-  await removeBatchFileEntries(idList);
-  getPage();
-};
+  await removeBatchFileEntries(idList)
+  getPage()
+}
 
 watch(
   () => route.query.id as string,
   () => {
-    getPage(1, (route.query.id as string) || "");
-  }
-);
+    getPage(1, (route.query.id as string) || '')
+  },
+)
 </script>
 
 <template>
@@ -147,9 +147,9 @@ watch(
         <ElButton v-if="$route.query.id" @click="$router.back()">返回</ElButton>
         文件管理
       </div>
-      <ElButton type="primary" @click="onCreateFolder" style="margin: 0 16px"
-        >创建文件夹</ElButton
-      >
+      <ElButton type="primary" @click="onCreateFolder" style="margin: 0 16px">
+        创建文件夹
+      </ElButton>
       <el-dialog
         v-model="state.isCreateFolderDialogVisible"
         width="30%"
@@ -163,9 +163,7 @@ watch(
         </span>
         <template #footer>
           <span class="dialog-footer">
-            <el-button type="primary" @click="onEditFileEntry">
-              确认
-            </el-button>
+            <el-button type="primary" @click="onEditFileEntry">确认</el-button>
           </span>
         </template>
       </el-dialog>

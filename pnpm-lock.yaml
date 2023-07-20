@@ -12,8 +12,8 @@ importers:
         specifier: 1.0.0-beta.3
         version: 1.0.0-beta.3
       '@j-l/prettier-config':
-        specifier: 1.0.0-alpha.2
-        version: 1.0.0-alpha.2(prettier@3.0.0)
+        specifier: ^1.0.2
+        version: 1.0.2(prettier@3.0.0)
       prettier:
         specifier: ^3.0.0
         version: 3.0.0
@@ -882,8 +882,8 @@ packages:
       '@prisma/client': 4.16.2(prisma@4.16.1)
     dev: false
 
-  /@j-l/prettier-config@1.0.0-alpha.2(prettier@3.0.0):
-    resolution: {integrity: sha512-/O9fq25ogN4mj08SfsRQh3Q2ZAZSKybprKWoQmsYRY1dhB+k3IpKl8+j18fXqp+gjDKTEmG4OIWpG09vGceStA==}
+  /@j-l/prettier-config@1.0.2(prettier@3.0.0):
+    resolution: {integrity: sha512-CvlMcnb4P84tbqibrbA/6sF6X1tMHuzGKLzP6bPO5d4DxKsgRparaxnQkUWVGy0A0cobBV4q5LkaWvRu7IK3JA==}
     peerDependencies:
       prettier: '>= 3.0.0'
     dependencies:
