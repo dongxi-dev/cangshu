@@ -19,6 +19,7 @@
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
     "@prisma/client": "^4.16.2",
+    "cookie-session": "^2.0.0",
     "express-session": "^1.17.3",
     "qiniu": "^7.8.0"
   },

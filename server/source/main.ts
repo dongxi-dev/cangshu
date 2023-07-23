@@ -3,7 +3,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { DBService } from '@j-l/nestjs-db';
 import * as session from 'express-session';
-
+var cookieSession = require('cookie-session');
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
@@ -32,8 +32,15 @@ async function bootstrap() {
     preflightContinue: false,
     optionsSuccessStatus: 204,
   });
-
-  app.use(
+  /* app.use(
+    cookieSession({
+      name: 'session',
+      keys: ['cangshu-keys'],
+      // Cookie Options
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    }),
+  ); */
+    app.use(
     session({
       secret: 'keyboard cat', // 秘钥
       name: 'file-suuid', // 生成cookie的名称
