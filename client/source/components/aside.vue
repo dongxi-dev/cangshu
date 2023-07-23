@@ -40,7 +40,13 @@
 
 <script lang="ts" setup>
 import { menus } from '~/store/menu'
-
+import {
+  checkLogin,
+} from "~/services/user";
+import { ElMessage } from 'element-plus';
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const menuData = menus().menu
 
 const handleOpen = (key: string, keyPath: string[]) => {
@@ -49,6 +55,19 @@ const handleOpen = (key: string, keyPath: string[]) => {
 const handleClose = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+const checkIsLogin = async () => {
+  const res = await checkLogin();
+  if (!res) {
+    ElMessage({
+      message: "登录失效，请登录！！！",
+      type: "warning",
+      onClose() {
+        router.push("/login");
+      },
+    });
+  }
+};
+onMounted(checkIsLogin);
 </script>
 
 
