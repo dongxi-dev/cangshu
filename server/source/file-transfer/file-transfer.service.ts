@@ -1,43 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { rs, auth } from 'qiniu';
 import { ACCESS_KEY, BUCKET_NAME, SECRET_KEY } from '../constants';
+import { getCredential } from 'qcloud-cos-sts';
 
 const mac = new auth.digest.Mac(ACCESS_KEY, SECRET_KEY);
-
-interface OSAdapter {
-  new (options: {
-    accessId: string;
-    accessKey: string;
-    region: string;
-    bucket: string;
-    basePath: string;
-  }): any;
-  accessId: string;
-  getToken(): string | Promise<string>;
-  getURL(key: string): string | Promise<string>;
-}
-
-class TencentOSAdapter implements OSAdapter {
-  accessId: string;
-
-  constructor(options: {
-    accessId: string;
-    accessKey: string;
-    region: string;
-    bucket: string;
-    basePath: string;
-  }) {
-    this.accessId = options.accessId;
-  }
-
-  getToken(): string | Promise<string> {
-    return '';
-  }
-
-  getURL(key: string): string | Promise<string> {
-    return '';
-  }
-}
 
 @Injectable()
 export class FileTransferService {
