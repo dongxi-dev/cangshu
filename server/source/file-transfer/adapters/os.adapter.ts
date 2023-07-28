@@ -6,7 +6,7 @@ export interface ObjectStorageAdapterOptions {
   prefix: string;
 }
 
-export interface Credential {
+export interface StorageCredential {
   accessId?: string;
   accessKey?: string;
   region?: string;
@@ -18,11 +18,11 @@ export interface Credential {
 }
 
 export abstract class ObjectStorageAdapter {
-  accessId: string;
-  accessKey: string;
-  region: string;
-  bucket: string;
-  prefix: string;
+  protected accessId: string;
+  protected accessKey: string;
+  protected region: string;
+  protected bucket: string;
+  protected prefix: string;
 
   constructor(options: ObjectStorageAdapterOptions) {
     this.accessId = options.accessId;
@@ -32,9 +32,7 @@ export abstract class ObjectStorageAdapter {
     this.prefix = options.prefix;
   }
 
-  abstract getCredential(): Credential | Promise<Credential>;
+  abstract getCredential(): StorageCredential | Promise<StorageCredential>;
 
-  abstract getToken(): string | Promise<string>;
-
-  abstract getURL(key: string): string | Promise<string>;
+  // abstract getURL(key: string): string | Promise<string>;
 }

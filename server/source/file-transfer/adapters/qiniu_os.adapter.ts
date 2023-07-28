@@ -2,9 +2,10 @@ import { rs, auth } from 'qiniu';
 import {
   ObjectStorageAdapterOptions,
   ObjectStorageAdapter,
+  StorageCredential,
 } from './os.adapter';
 
-export class TencentOSAdapter extends ObjectStorageAdapter {
+export class QiniuObjectStorageAdapter extends ObjectStorageAdapter {
   mac: auth.digest.Mac;
 
   constructor(options: ObjectStorageAdapterOptions) {
@@ -12,16 +13,14 @@ export class TencentOSAdapter extends ObjectStorageAdapter {
     this.mac = new auth.digest.Mac(this.accessId, this.accessKey);
   }
 
-  getToken(): string | Promise<string> {
+  getCredential(): StorageCredential | Promise<StorageCredential> {
     const token = new rs.PutPolicy({
       scope: this.bucket,
       expires: 7200,
     }).uploadToken(this.mac);
 
-    return token;
-  }
-
-  getURL(key: string): string | Promise<string> {
-    return '';
+    return {
+      token,
+    };
   }
 }

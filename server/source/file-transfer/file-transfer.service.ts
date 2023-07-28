@@ -1,18 +1,21 @@
 import { Injectable } from '@nestjs/common';
-import { rs, auth } from 'qiniu';
-import { ACCESS_KEY, BUCKET_NAME, SECRET_KEY } from '../constants';
-import { getCredential } from 'qcloud-cos-sts';
+import { QiniuObjectStorageAdapter } from './adapters/qiniu_os.adapter';
+import { TencentObjectStorageAdapter } from './adapters/tencent_os.adapter';
 
-const mac = new auth.digest.Mac(ACCESS_KEY, SECRET_KEY);
+const adapterMap = {
+  qiniu: QiniuObjectStorageAdapter,
+  tencent: TencentObjectStorageAdapter,
+};
 
 @Injectable()
 export class FileTransferService {
-  getToken() {
-    const token = new rs.PutPolicy({
-      scope: BUCKET_NAME,
-      expires: 7200,
-    }).uploadToken(mac);
-
-    return { token };
+  getStorageCredential(type: 'qiniu' | 'tencent') {
+    return new adapterMap[type]({
+      accessId: '',
+      accessKey: '',
+      region: '',
+      bucket: '',
+      prefix: '',
+    }).getCredential();
   }
 }
