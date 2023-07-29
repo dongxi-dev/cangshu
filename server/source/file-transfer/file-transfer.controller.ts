@@ -1,22 +1,18 @@
 import { Controller, Get, Param, Put } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { FileTransferService } from './file-transfer.service';
 
 @Controller('file-transfer')
 export class FileTransferController {
-  constructor(private fileTransferService: FileTransferService) {}
+  constructor(
+    private fileTransferService: FileTransferService,
+    private configService: ConfigService,
+  ) {}
 
-  @Get('token')
-  getToken(@Param() type = 'qiniu') {
-    return this.fileTransferService.getStorageCredential('qiniu');
-  }
+  @Get('credential')
+  getToken() {
+    const type = this.configService.getOrThrow('__OS_TYPE__');
 
-  @Put()
-  upload() {
-    // suggest user upload from browser
-  }
-
-  @Get()
-  download() {
-    // suggest use file's end URL
+    return this.fileTransferService.getStorageCredential(type);
   }
 }

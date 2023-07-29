@@ -13,7 +13,6 @@ export class FileTransferService {
   constructor(private configService: ConfigService) {}
 
   getStorageCredential(type: 'qiniu' | 'tencent') {
-    console.log(this.configService.get('__OS_ACCESS_ID__'));
     const accessId = this.configService.get('__OS_ACCESS_ID__');
     const accessKey = this.configService.get('__OS_ACCESS_KEY__');
     const region = this.configService.get('__OS_REGION__');

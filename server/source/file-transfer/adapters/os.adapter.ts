@@ -18,6 +18,7 @@ export interface StorageCredential {
 }
 
 export abstract class ObjectStorageAdapter {
+  protected abstract type: string;
   protected accessId: string;
   protected accessKey: string;
   protected region: string;

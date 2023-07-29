@@ -6,7 +6,8 @@ import {
 } from './os.adapter';
 
 export class QiniuObjectStorageAdapter extends ObjectStorageAdapter {
-  mac: auth.digest.Mac;
+  type = 'qiniu';
+  protected mac: auth.digest.Mac;
 
   constructor(options: ObjectStorageAdapterOptions) {
     super(options);
@@ -21,6 +22,9 @@ export class QiniuObjectStorageAdapter extends ObjectStorageAdapter {
 
     return {
       token,
+      region: this.region,
+      bucket: this.bucket,
+      prefix: this.prefix,
     };
   }
 }

@@ -2,6 +2,8 @@ import { getCredential } from 'qcloud-cos-sts';
 import { ObjectStorageAdapter, StorageCredential } from './os.adapter';
 
 export class TencentObjectStorageAdapter extends ObjectStorageAdapter {
+  type = 'tencent';
+
   async getCredential(): Promise<StorageCredential> {
     const result = await getCredential({
       secretId: this.accessId,
