@@ -21,6 +21,7 @@ export class QiniuObjectStorageAdapter extends ObjectStorageAdapter {
     }).uploadToken(this.mac);
 
     return {
+      type: this.type,
       token,
       region: this.region,
       bucket: this.bucket,

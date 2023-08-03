@@ -16,6 +16,7 @@
     "@element-plus/icons-vue": "^2.1.0",
     "@j-l/request": "1.0.0-beta.7",
     "@tanstack/vue-query": "^4.29.20",
+    "cos-js-sdk-v5": "^1.4.18",
     "element-plus": "^2.3.7",
     "pinia": "^2.1.4",
     "qiniu-js": "^3.4.1",

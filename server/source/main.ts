@@ -4,11 +4,9 @@ import { AppModule } from './app.module';
 import { DBService } from '@j-l/nestjs-db';
 import * as session from 'express-session';
 var cookieSession = require('cookie-session');
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  console.log(3232, process.env.DATABASE_URL);
-  console.log(3232, process.env.__APP_ID__);
 
   const prismaService = app.get(DBService);
   await prismaService.enableShutdownHooks(app);
@@ -24,6 +22,7 @@ async function bootstrap() {
 
   app.enableCors({
     origin: 'http://localhost:5173',
+    // origin: 'http://xyweb.staryuntech.com',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: ['content-type', 'Authorization'],
     exposedHeaders: ['Content-Range', 'X-Content-Range'],
@@ -40,7 +39,7 @@ async function bootstrap() {
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
     }),
   ); */
-    app.use(
+  app.use(
     session({
       secret: 'keyboard cat', // 秘钥
       name: 'file-suuid', // 生成cookie的名称

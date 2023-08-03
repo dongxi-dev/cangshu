@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nest start --debug --watch",
     "build": "nest build",
-    "dev-db": "prisma migrate dev --name dev",
+    "dev.db": "prisma migrate dev --name dev",
     "view-db": "prisma studio",
     "format": "prettier --write \"source/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",

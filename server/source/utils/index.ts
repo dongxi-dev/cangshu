@@ -21,7 +21,7 @@ export const PageQuery = createParamDecorator(
   },
 );
 
-export const cryptoPassword = (password: string, salt = PASSWORD_SALT) => {
+export const cryptoPassword = (password: string, salt = '') => {
   return createHash('md5').update(`${password}:${salt}`).digest('hex');
 };
 

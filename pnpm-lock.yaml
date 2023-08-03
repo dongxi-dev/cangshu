@@ -29,6 +29,9 @@ importers:
       '@tanstack/vue-query':
         specifier: ^4.29.20
         version: 4.29.20(vue@3.3.4)
+      cos-js-sdk-v5:
+        specifier: ^1.4.18
+        version: 1.4.18
       element-plus:
         specifier: ^2.3.7
         version: 2.3.7(vue@3.3.4)
@@ -2114,6 +2117,11 @@ packages:
       '@xtuc/long': 4.2.2
     dev: true
 
+  /@xmldom/xmldom@0.8.10:
+    resolution: {integrity: sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==}
+    engines: {node: '>=10.0.0'}
+    dev: false
+
   /@xtuc/ieee754@1.2.0:
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
     dev: true
@@ -2808,6 +2816,12 @@ packages:
     dependencies:
       object-assign: 4.1.1
       vary: 1.1.2
+
+  /cos-js-sdk-v5@1.4.18:
+    resolution: {integrity: sha512-vTy8p59qnEoNJH/1chBSU8lSJDEcKV5PeOlAngmPbmHEwoMNJmKmA71nnquGIWHI4KpR4n57yC+RKP6RZkgsBg==}
+    dependencies:
+      '@xmldom/xmldom': 0.8.10
+    dev: false
 
   /cosmiconfig@7.1.0:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}

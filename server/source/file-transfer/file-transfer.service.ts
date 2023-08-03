@@ -18,12 +18,14 @@ export class FileTransferService {
     const region = this.configService.get('__OS_REGION__');
     const bucket = this.configService.get('__OS_BUCKET__');
     const prefix = this.configService.get('__OS_PREFIX__');
+    const origin = this.configService.get('__OS_ORIGIN__');
     return new adapterMap[type]({
       accessId,
       accessKey,
       region,
       bucket,
       prefix,
+      origin,
     }).getCredential();
   }
 }

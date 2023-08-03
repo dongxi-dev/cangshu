@@ -1,5 +1,6 @@
 import client from '@j-l/request'
 import { upload, region, getUploadUrl } from 'qiniu-js'
+import COS from 'cos-js-sdk-v5'
 
 export async function getFilePage(
   params?: Partial<DTI.PageNote<{ parentId?: string }>>,
@@ -50,7 +51,32 @@ export const removeBatchFileEntries = async (idList: string[]) => {
 }
 
 export const uploadFile = async (file: File) => {
-  const { token, prefix }: any = await client.get('/file-transfer/credential')
+  const { token, prefix, type, ...rest }: any = await client.get(
+    '/file-transfer/credential',
+  )
+
+  if (type === 'tencent') {
+    const cos = new COS({
+      getAuthorization(options, callback) {
+        callback({
+          TmpSecretId: rest.accessId,
+          TmpSecretKey: rest.accessKey,
+          SecurityToken: token,
+          StartTime: rest.startAt,
+          ExpiredTime: rest.expiredAt,
+        })
+      },
+    })
+
+    const result = await cos.uploadFile({
+      Body: file,
+      Key: prefix + file.name,
+      Region: rest.region,
+      Bucket: rest.bucket,
+    })
+
+    return 'https://' + result.Location
+  }
 
   const observable = upload(
     file,
