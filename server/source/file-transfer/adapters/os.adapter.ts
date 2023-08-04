@@ -8,13 +8,13 @@ export interface ObjectStorageAdapterOptions {
 }
 
 export interface StorageCredential {
-  type: string;
-  accessId?: string;
-  accessKey?: string;
-  region?: string;
-  bucket?: string;
-  prefix?: string;
-  origin?: string;
+  type: ObjectStorageAdapter['type'];
+  accessId?: ObjectStorageAdapter['accessId'];
+  accessKey?: ObjectStorageAdapter['accessKey'];
+  region?: ObjectStorageAdapter['region'];
+  bucket?: ObjectStorageAdapter['bucket'];
+  prefix?: ObjectStorageAdapter['prefix'];
+  origin?: ObjectStorageAdapter['origin'];
   startAt?: number;
   expiredAt?: number;
   token?: string;
@@ -22,12 +22,12 @@ export interface StorageCredential {
 
 export abstract class ObjectStorageAdapter {
   protected abstract type: string;
-  protected accessId: string;
-  protected accessKey: string;
-  protected region: string;
-  protected bucket: string;
-  protected prefix: string;
-  protected origin: string;
+  protected accessId: ObjectStorageAdapterOptions['accessId'];
+  protected accessKey: ObjectStorageAdapterOptions['accessKey'];
+  protected region: ObjectStorageAdapterOptions['region'];
+  protected bucket: ObjectStorageAdapterOptions['bucket'];
+  protected prefix: ObjectStorageAdapterOptions['prefix'];
+  protected origin?: ObjectStorageAdapterOptions['origin'];
 
   constructor(options: ObjectStorageAdapterOptions) {
     this.accessId = options.accessId;
