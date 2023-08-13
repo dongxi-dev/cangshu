@@ -1,0 +1,53 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  name     String?
+  avatar   String?
+  email    String?
+  username String
+  password String
+  // 0 超级管理员 无权限限制 1 后管理员 2 前台会员用户 （前台用户应当无权限登录后台） 3 前台普通用户 99 临时用户（游客）
+  type     Int       @default(99)
+  createAt DateTime  @default(now())
+  // createBy Int?
+  updateAt DateTime  @updatedAt
+  // updateBy Int?
+  removeAt DateTime?
+  removeBy Int?
+  roles    Role[]
+}
+
+model Role {
+  id          Int          @id @default(autoincrement())
+  name        String
+  createAt    DateTime     @default(now())
+  // createBy Int?
+  updateAt    DateTime     @updatedAt
+  // updateBy Int?
+  removeAt    DateTime?
+  removeBy    Int?
+  permissions Permission[]
+  ofUsers     User[]
+}
+
+model Permission {
+  code     String    @id @unique
+  // 0 系统预设 1 程序设置的业务权限 2 程序设置的接口权限 3 用户自定义的权限
+  type     Int       @default(3)
+  name     String
+  createAt DateTime  @default(now())
+  // createBy Int?
+  updateAt DateTime  @updatedAt
+  // updateBy Int?
+  removeAt DateTime?
+  removeBy Int?
+  ofRoles  Role[]
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
