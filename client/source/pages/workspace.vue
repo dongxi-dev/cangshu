@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import Side from '~/components/aside.vue'
+import Aside from '~/components/aside.vue'
 import Head from '~/components/head.vue'
+import { useSessionCheck } from '~/hooks'
+
+useSessionCheck()
 </script>
 
 <template>
   <div :class="$style.lot">
-    <Side />
+    <Aside />
     <div :class="$style.content">
-      <Head />
       <RouterView />
     </div>
   </div>

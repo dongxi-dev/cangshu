@@ -1,83 +1,92 @@
+<script lang="ts" setup>
+import { logout } from '~/services'
+
+const router = useRouter()
+
+const onLogout = async () => {
+  await ElMessageBox({
+    title: '提示',
+    message: '是否确认退出登录？',
+    showCancelButton: true,
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+  })
+  const message = ElMessage({
+    message: '退出中',
+  })
+  try {
+    await logout()
+    message.close()
+    ElMessage({
+      message: '退出成功，即将跳转登录页面',
+      type: 'success',
+    })
+    router.push('/login')
+  } catch (error) {
+    message.close()
+    ElMessage({
+      message: '退出失败',
+      type: 'error',
+    })
+  }
+}
+</script>
+
 <template>
-  <ElMenu
-      default-active="/"
-      active-text-color="#409eff"
-      @open="handleOpen"
-      @close="handleClose"
-      :router="true"
-  >
-    <div :class="$style.log">
-      logo
-    </div>
-    <template v-for="(m, idx) in menuData">
-      <template v-if="!m.hideInMenu">
-        <ElSubMenu v-if="m.children && m.children.length" :key="idx.toString()" :index="idx.toString()">
-          <template #title>
-            <ElIcon>{{ m.icon }}</ElIcon>
-            <span>{{ m.name }}</span>
-          </template>
-          <template v-for="(sub, sIdx) in m.children">
-            <template v-if="!sub.hideMenu">
-              <ElMenuItem :key="sub.path" :index="sub.path">
-                <template #title>
-                  <el-icon>{{ sub.icon }}</el-icon>
-                  <span>{{ sub.name }}</span>
-                </template>
-              </ElMenuItem>
-            </template>
-          </template>
-        </ElSubMenu>
-        <ElMenuItem v-else :key="m.path" :index="m.path">
-          <template #title>
-            <el-icon>{{ m.icon }}</el-icon>
-            <span>{{ m.name }}</span>
-          </template>
-        </ElMenuItem>
+  <ElMenu active-text-color="#409eff" :router="true" :class="$style.pod">
+    <div :class="$style.logo">logo</div>
+    <ElMenuItem index="/workspace">
+      <template #title>
+        <el-icon></el-icon>
+        <span>首页</span>
       </template>
-    </template>
+    </ElMenuItem>
+    <ElMenuItem index="/workspace/files">
+      <template #title>
+        <el-icon></el-icon>
+        <span>文件管理</span>
+      </template>
+    </ElMenuItem>
+    <ElDropdown :class="$style.user_actions">
+      <div :class="$style.user">
+        <ElAvatar />
+        张三
+      </div>
+      <template #dropdown>
+        <el-dropdown-menu>
+          <el-dropdown-item disabled>设置</el-dropdown-item>
+          <el-dropdown-item divided @click="onLogout">
+            退出登录
+          </el-dropdown-item>
+        </el-dropdown-menu>
+      </template>
+    </ElDropdown>
   </ElMenu>
 </template>
 
-<script lang="ts" setup>
-import { menus } from '~/store/menu'
-import {
-  checkLogin,
-} from "~/services/user";
-import { ElMessage } from 'element-plus';
-import { onMounted } from 'vue';
-import { useRouter } from 'vue-router';
-const router = useRouter();
-const menuData = menus().menu
-
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+<style module>
+.pod {
+  width: 240px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-flow: column;
 }
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  background: #eee;
 }
-const checkIsLogin = async () => {
-  const res = await checkLogin();
-  if (!res) {
-    ElMessage({
-      message: "登录失效，请登录！！！",
-      type: "warning",
-      onClose() {
-        router.push("/login");
-      },
-    });
-  }
-};
-onMounted(checkIsLogin);
-</script>
-
-
-<style module lang="postcss">
-  .log {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 220px;
-    height: 40px;
-    background: #eee;
-  }
+.user_actions {
+  margin: auto 0 0;
+}
+.user {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+}
 </style>

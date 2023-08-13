@@ -10,6 +10,11 @@ export const login = async (params: App.DTO.Login) => {
   return result
 }
 
+export const logout = async () => {
+  const result: any = await client.delete('/auth')
+  return result
+}
+
 export const loginUser = async (params: {
   password: string
   username: string
