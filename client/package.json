@@ -1,5 +1,5 @@
 {
-  "name": "vue-template",
+  "name": "@jiluo-cc/cangshu-client",
   "version": "0.1.0",
   "scripts": {
     "dev": "vite -m alpha",
@@ -15,21 +15,21 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
     "@j-l/request": "1.0.0-beta.7",
-    "@tanstack/vue-query": "^4.29.20",
-    "cos-js-sdk-v5": "^1.4.18",
-    "element-plus": "^2.3.7",
-    "pinia": "^2.1.4",
+    "@tanstack/vue-query": "^4.32.6",
+    "cos-js-sdk-v5": "^1.4.20",
+    "element-plus": "^2.3.9",
+    "pinia": "^2.1.6",
     "qiniu-js": "^3.4.1",
     "vue": "^3.3.4",
-    "vue-router": "^4.2.2"
+    "vue-router": "^4.2.4"
   },
   "devDependencies": {
-    "@types/node": "^18.16.18",
+    "@types/node": "^18.17.5",
     "@vitejs/plugin-vue": "^4.2.3",
     "typescript": "~5.0.4",
-    "unplugin-auto-import": "^0.16.4",
+    "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.1",
-    "vite": "^4.3.9",
-    "vue-tsc": "^1.8.1"
+    "vite": "^4.4.9",
+    "vue-tsc": "^1.8.8"
   }
 }

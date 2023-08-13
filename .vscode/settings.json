@@ -1,13 +1,13 @@
 {
   "cSpell.words": [
     "cangshu",
+    "jiluo",
     "nestjs",
     "Pinia",
     "postcss",
     "predev",
     "qiniu",
+    "tanstack",
     "unplugin"
-  ],
-  "spellright.language": ["en"],
-  "spellright.documentTypes": ["markdown", "latex", "plaintext", "typescript"]
+  ]
 }
