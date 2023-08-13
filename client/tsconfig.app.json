@@ -24,7 +24,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["source/*"]
+      "~/*": ["./source/*"]
     },
     "types": ["@j-l/dti/types"]
   },

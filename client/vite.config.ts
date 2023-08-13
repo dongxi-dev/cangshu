@@ -9,6 +9,8 @@ export default defineConfig({
   plugins: [
     vue(),
     autoImport({
+      imports: ['vue', 'vue-router'],
+      vueTemplate: true,
       resolvers: [ElementPlusResolver()],
       dts: '.local/auto-imports.d.ts',
     }),

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import ElementPlus, { ElMessage } from 'element-plus'
+import ElementPlus from 'element-plus'
 import client from '@j-l/request'
 import 'element-plus/dist/index.css'
 import DefaultLayout from '~/layouts/default.vue'
@@ -13,6 +13,7 @@ client.config({
   contentType: 'json',
   responseType: 'json',
   withCredentials: true,
+  timeout: 600,
   onResponse(response) {
     if (response.status === 401) {
       ElMessage('未登录')
