@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { DBService } from '@j.l/nestjs-database'
+import { DBService } from '@j-l/nestjs-db'
 import { AuthLoginDTO, UserSession } from './auth.dto'
 import { encryptPassword } from '../shared/utils'
 import { ConfigService } from '@nestjs/config'

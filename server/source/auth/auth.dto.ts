@@ -1,4 +1,4 @@
-import { User } from '@j.l/nestjs-database'
+import { User } from '@j-l/nestjs-db'
 import { IsEmail, IsNotEmpty, Length } from 'class-validator'
 
 export class AuthLoginDTO {

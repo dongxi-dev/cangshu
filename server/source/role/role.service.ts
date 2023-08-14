@@ -1,4 +1,4 @@
-import { DBService, Prisma, Role } from '@j.l/nestjs-database'
+import { DBService, Prisma, Role } from '@j-l/nestjs-db'
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { AddRoleDTO, UpdateRoleDto } from './role.dto'
 

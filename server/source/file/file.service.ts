@@ -1,4 +1,4 @@
-import { DBService, Prisma } from '@j.l/nestjs-database'
+import { DBService, Prisma } from '@j-l/nestjs-db'
 import { Injectable } from '@nestjs/common'
 
 @Injectable()

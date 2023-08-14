@@ -1,4 +1,4 @@
-import { Permission, Role } from '@j.l/nestjs-database'
+import { Permission, Role } from '@j-l/nestjs-db'
 import { PartialType } from '@nestjs/swagger'
 import { IsInt, IsNotEmpty, Length } from 'class-validator'
 

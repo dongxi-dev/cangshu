@@ -6,7 +6,8 @@
   "devDependencies": {
     "@j-l/dti": "1.0.0-beta.3",
     "@j-l/prettier-config": "^1.0.2",
-    "prettier": "^3.0.0"
+    "prettier": "^3.0.0",
+    "typescript": "^5.1.6"
   },
   "prettier": "@j-l/prettier-config"
 }

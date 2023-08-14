@@ -1,4 +1,4 @@
-import { DBService, Permission, Prisma } from '@j.l/nestjs-database'
+import { DBService, Permission, Prisma } from '@j-l/nestjs-db'
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
 import { AddPermissionDTO, UpdatePermissionDto } from './permission.dto'
 

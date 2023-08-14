@@ -9,7 +9,7 @@ import {
   Put,
   Session,
 } from '@nestjs/common'
-import { User } from '@j.l/nestjs-database'
+import { User } from '@j-l/nestjs-db'
 import { UserService } from './user.service'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { AddUserDTO, UpdateUserDto } from './user.dto'

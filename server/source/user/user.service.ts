@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
-import { DBService, User, Prisma } from '@j.l/nestjs-database'
+import { DBService, User, Prisma } from '@j-l/nestjs-db'
 import { AddUserDTO, UpdateUserDto } from './user.dto'
 
 @Injectable()

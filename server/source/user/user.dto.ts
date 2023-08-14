@@ -1,4 +1,4 @@
-import { Prisma, User } from '@j.l/nestjs-database'
+import { Prisma, User } from '@j-l/nestjs-db'
 import { PartialType } from '@nestjs/swagger'
 import { IsNotEmpty, Length } from 'class-validator'
 
