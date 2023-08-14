@@ -51,3 +51,26 @@ model Permission {
 generator client {
   provider = "prisma-client-js"
 }
+
+
+model File {
+  id       Int       @id @default(autoincrement())
+  // 文件名
+  name     String
+  // 文件类型 0 文件夹 1 图片 2 音频 3 视频 4 文本
+  type     Int
+  // 文件大小
+  size     Int       @default(0)
+  // 文件下载地址 CDN 地址
+  url      String?
+  createBy Int?
+  createAt DateTime  @default(now())
+  updateBy Int?
+  updateAt DateTime  @updatedAt
+  removeBy Int?
+  removeAt DateTime?
+
+  parentId Int?
+  parent   File?  @relation("FileFolder", fields: [parentId], references: [id])
+  children File[] @relation("FileFolder")
+}

@@ -8,4 +8,12 @@ declare namespace App {
     }
     export interface Logout {}
   }
+
+  export namespace Models {
+    export interface LoginUser {
+      id: number
+      name: string
+      avatar: string
+    }
+  }
 }

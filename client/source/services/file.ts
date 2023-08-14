@@ -1,13 +1,11 @@
 import client from '@j-l/request'
-import { upload, region, getUploadUrl } from 'qiniu-js'
+import { upload } from 'qiniu-js'
 import COS from 'cos-js-sdk-v5'
 
 export async function getFilePage(
   params?: Partial<DTI.PageNote<{ parentId?: string }>>,
 ): Promise<DTI.Page> {
-  const result: any = await client.get('/files', params)
-
-  console.log(JSON.stringify(result), 999)
+  const result: any = await client.get('files', params)
 
   return result
 }
@@ -21,16 +19,16 @@ export const addFileEntry = async (params: {
   parentId?: string
 }) => {
   // 暂时只考虑 文件夹
-  const result: any = await client.put('/files', params)
+  const result: any = await client.put('files', params)
 }
 
 export const updateFileEntry = async (id: string, params: { name: string }) => {
-  const result: any = await client.patch('/files/' + id, params)
+  const result: any = await client.patch('files/' + id, params)
 }
 
 export const removeFileEntry = async (id: string) => {
   const result: any = await client.delete(
-    '/files/' + id,
+    'files/' + id,
     {},
     {
       payload: {},
@@ -40,7 +38,7 @@ export const removeFileEntry = async (id: string) => {
 
 export const removeBatchFileEntries = async (idList: string[]) => {
   const result: any = await client.delete(
-    '/files/batch',
+    'files/batch',
     {
       idList,
     },
@@ -52,7 +50,7 @@ export const removeBatchFileEntries = async (idList: string[]) => {
 
 export const uploadFile = async (file: File) => {
   const { token, prefix, type, ...rest }: any = await client.get(
-    '/file-transfer/credential',
+    'file-transfer/credential',
   )
 
   if (type === 'tencent') {

@@ -7,11 +7,13 @@ import {
   ParseIntPipe,
   Patch,
   Put,
+  Session,
 } from '@nestjs/common'
 import { User } from '@j.l/nestjs-database'
 import { UserService } from './user.service'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 import { AddUserDTO, UpdateUserDto } from './user.dto'
+import { UserSession } from '../auth/auth.dto'
 
 @ApiTags('用户')
 @Controller('users')
@@ -22,6 +24,12 @@ export class UserController {
   @Get()
   getPage(): Promise<User[]> {
     return this.userService.getAll()
+  }
+
+  @ApiOperation({ summary: '获取当前用户详情' })
+  @Get('-')
+  getSelf(@Session() session: UserSession): Promise<User> {
+    return this.userService.getOne(session.userId)
   }
 
   @ApiOperation({ summary: '获取用户详情' })

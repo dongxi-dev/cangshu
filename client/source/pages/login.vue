@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { type FormInstance, type FormRules } from 'element-plus'
-import { checkSession, login } from '~/services'
+import { useSessionCheck } from '~/hooks'
+import { login } from '~/services'
+import { useGlobalStore } from '~/store/global'
 
 const formRef = ref<FormInstance>()
+useSessionCheck()
+const globalStore = useGlobalStore()
 const router = useRouter()
 const state = reactive({
   form: {
@@ -15,23 +19,6 @@ const rules: FormRules = {
   username: [{ required: true, message: '请输入账号', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 }
-
-onMounted(async () => {
-  /**
-   * TODO:
-   * 1. lock ui and loading and toast tips
-   */
-  const res = await checkSession()
-  if (res) {
-    ElMessage({
-      message: '已登录，即将跳转首页',
-      type: 'success',
-      onClose() {
-        router.push('/')
-      },
-    })
-  }
-})
 
 const onSubmit = async () => {
   await formRef.value?.validate()
@@ -48,7 +35,7 @@ const onSubmit = async () => {
      * 3. fetch data and logic
      * 4. notice user
      */
-    await login(state.form)
+    await globalStore.login(state.form)
 
     message.close()
     ElMessage({

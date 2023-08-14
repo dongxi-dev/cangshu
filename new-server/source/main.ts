@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule)
 
   // without micro services
-  app.enableCors()
+  app.enableCors({ origin: true, credentials: true })
   app.setGlobalPrefix('api')
   app.useGlobalPipes(new ValidationPipe())
 
@@ -16,13 +16,13 @@ async function bootstrap() {
     cookieSession({
       name: 'session',
       keys: ['123'],
-      maxAge: 10 * 1000,
+      maxAge: 10 * 1000 * 6 * 60,
     }),
   )
 
   const options = new DocumentBuilder()
-    .setTitle('NestJS Realworld Example App')
-    .setDescription('The Realworld API description')
+    .setTitle('仓鼠')
+    .setDescription('一个软件资产管理系统')
     .setVersion('1.0')
     .addBearerAuth()
     .build()

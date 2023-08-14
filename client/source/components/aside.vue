@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { logout } from '~/services'
+import { useGlobalStore } from '~/store/global'
 
 const router = useRouter()
+const globalStore = useGlobalStore()
 
 const onLogout = async () => {
   await ElMessageBox({
@@ -15,7 +16,7 @@ const onLogout = async () => {
     message: '退出中',
   })
   try {
-    await logout()
+    await globalStore.logout()
     message.close()
     ElMessage({
       message: '退出成功，即将跳转登录页面',
@@ -49,8 +50,8 @@ const onLogout = async () => {
     </ElMenuItem>
     <ElDropdown :class="$style.user_actions">
       <div :class="$style.user">
-        <ElAvatar />
-        张三
+        <ElAvatar :src="globalStore.state.user?.avatar" />
+        {{ globalStore.state.user?.name }}
       </div>
       <template #dropdown>
         <el-dropdown-menu>
