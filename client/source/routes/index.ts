@@ -11,7 +11,7 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {
         path: 'files',
-        component: () => import('~/views/files.vue'),
+        component: () => import('~/pages/files.vue'),
       },
     ],
   },
