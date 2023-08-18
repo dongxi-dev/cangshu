@@ -115,7 +115,7 @@ const onBeforeUpload = async (file: File) => {
 
 const onBatchRemove = async () => {
   //
-  const idList = state.selected.map(i => i.id)
+  const idList = state.selected.map((i) => i.id)
   if (!idList.length) {
     ElMessage('请选择要删除的项')
     return
@@ -139,7 +139,7 @@ watch(
       padding: 24px;
       display: flex;
       flex-flow: column;
-      height: calc(100vh - 74px);
+      height: 100%;
     "
   >
     <div style="display: flex; align-items: flex-start">

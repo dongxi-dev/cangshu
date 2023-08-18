@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "pnpm -F=* dev"
+    "dev": "pnpm --filter \"@jiluo-cc/*\" --parallel dev",
+    "dev.client": "pnpm -F @jiluo-cc/cangshu-client dev"
   },
   "devDependencies": {
     "@j-l/dti": "1.0.0-beta.3",

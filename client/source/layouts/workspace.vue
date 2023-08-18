@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import Side from "~/components/aside.vue";
-import Head from "~/components/head.vue";
+import Side from '~/components/aside.vue'
 </script>
 
 <template>
   <div :class="$style.lot">
     <Side />
     <div :class="$style.content">
-      <Head />
       <RouterView />
     </div>
   </div>
