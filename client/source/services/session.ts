@@ -1,25 +1,17 @@
 import client from '@j-l/request'
 
 export const getSessionStatus = async () => {
-  const result: any = await client.get('auth')
-  return !!result?.isValid
+  const result = await client.get<API.DTO.GetSessionStatus.Return>('auth')
+  return result.isValid
 }
 
-export const login = async (params: App.DTO.Login) => {
-  const result: unknown = await client.put('auth', params)
-  return result
+export const login = async (params: API.DTO.Login.Params) => {
+  await client.put<unknown>('auth', params)
 }
 
 export const logout = async () => {
-  const result: any = await client.delete('auth')
-  return result
+  await client.delete('auth')
 }
 
-export const getSessionUserInfo = async (): Promise<App.Models.LoginUser> => {
-  const result: any = await client.get('users/-')
-  return {
-    id: result?.id,
-    name: result?.name,
-    avatar: result?.avatar,
-  }
-}
+export const getSessionUserInfo = async () =>
+  client.get<API.DTO.GetSessionUserInfo.Return>('users/-')

@@ -3,7 +3,7 @@ import { createPinia } from 'pinia'
 import ElementPlus from 'element-plus'
 import client from '@j-l/request'
 import 'element-plus/dist/index.css'
-import DefaultLayout from '~/layouts/default.vue'
+import Root from '~/root.vue'
 import routes from '~/routes'
 import { API_BASE_URL } from '~/constants'
 
@@ -28,8 +28,4 @@ client.config({
   },
 })
 
-createApp(DefaultLayout)
-  .use(createPinia())
-  .use(routes)
-  .use(ElementPlus)
-  .mount('#app')
+createApp(Root).use(createPinia()).use(routes).use(ElementPlus).mount('#app')

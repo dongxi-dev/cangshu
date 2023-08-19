@@ -4,12 +4,12 @@ import {
   login as asyncLogin,
   logout as asyncLogout,
   getSessionStatus,
+  getSystemInfo,
 } from '~/services'
 
 export const useGlobalStore = defineStore('global', () => {
-  const state = reactive({
+  const state = reactive<API.Models.Global>({
     isLogin: false,
-    user: null as App.Models.LoginUser | null,
   })
 
   const getUserInfo = async () => {
@@ -26,7 +26,7 @@ export const useGlobalStore = defineStore('global', () => {
   const logout = async () => {
     await asyncLogout()
     state.isLogin = false
-    state.user = null
+    state.user = undefined
   }
 
   const checkSessionValid = async () => {
@@ -41,5 +41,10 @@ export const useGlobalStore = defineStore('global', () => {
     return true
   }
 
-  return { state, login, logout, checkSessionValid }
+  const getSystem = async () => {
+    const system = await getSystemInfo()
+    state.system = system
+  }
+
+  return { state, login, logout, checkSessionValid, getSystem }
 })
