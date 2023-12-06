@@ -59,7 +59,7 @@ importers:
         version: 18.17.5
       '@vitejs/plugin-vue':
         specifier: ^4.2.3
-        version: 4.2.3(vite@4.4.9)(vue@3.3.4)
+        version: 4.2.3(vite@4.4.12)(vue@3.3.4)
       typescript:
         specifier: ~5.0.4
         version: 5.0.4
@@ -70,96 +70,11 @@ importers:
         specifier: ^0.25.1
         version: 0.25.1(vue@3.3.4)
       vite:
-        specifier: ^4.4.9
-        version: 4.4.9(@types/node@18.17.5)
+        specifier: ^4.4.12
+        version: 4.4.12(@types/node@18.17.5)
       vue-tsc:
         specifier: ^1.8.8
         version: 1.8.8(typescript@5.0.4)
-
-  new-server:
-    dependencies:
-      '@j.l/nestjs-database':
-        specifier: 1.0.0-alpha.1
-        version: registry.npmjs.org/@j.l/nestjs-database@1.0.0-alpha.1(@nestjs/common@10.1.1)(@prisma/client@5.0.0)
-      '@nestjs/common':
-        specifier: ^10.1.1
-        version: 10.1.1(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/config':
-        specifier: ^3.0.0
-        version: 3.0.0(@nestjs/common@10.1.1)(reflect-metadata@0.1.13)
-      '@nestjs/core':
-        specifier: ^10.1.1
-        version: 10.1.1(@nestjs/common@10.1.1)(@nestjs/platform-express@10.1.1)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@nestjs/platform-express':
-        specifier: ^10.1.1
-        version: 10.1.1(@nestjs/common@10.1.1)(@nestjs/core@10.1.1)
-      '@nestjs/serve-static':
-        specifier: ^4.0.0
-        version: 4.0.0(@nestjs/common@10.1.1)(@nestjs/core@10.1.1)(express@4.18.2)
-      '@nestjs/swagger':
-        specifier: ^7.1.2
-        version: 7.1.2(@nestjs/common@10.1.1)(@nestjs/core@10.1.1)(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)
-      '@prisma/client':
-        specifier: ^5.0.0
-        version: 5.0.0(prisma@5.0.0)
-      '@types/express':
-        specifier: ^4.17.17
-        version: 4.17.17
-      class-transformer:
-        specifier: ^0.5.1
-        version: 0.5.1
-      class-validator:
-        specifier: ^0.14.0
-        version: 0.14.0
-      cookie-session:
-        specifier: ^2.0.0
-        version: 2.0.0
-      express:
-        specifier: ^4.18.2
-        version: 4.18.2
-      qcloud-cos-sts:
-        specifier: ^3.1.0
-        version: 3.1.0
-      qiniu:
-        specifier: ^7.8.0
-        version: 7.8.0
-    devDependencies:
-      '@j-l/dti':
-        specifier: 1.0.0-beta.3
-        version: 1.0.0-beta.3
-      '@j-l/prettier-config':
-        specifier: ^1.0.2
-        version: 1.0.2(prettier@3.0.1)
-      '@nestjs/cli':
-        specifier: ^10.1.10
-        version: 10.1.10(@swc/cli@0.1.62)(@swc/core@1.3.76)
-      '@nestjs/schematics':
-        specifier: ^10.0.1
-        version: 10.0.1(chokidar@3.5.3)(typescript@5.1.6)
-      '@swc/cli':
-        specifier: ^0.1.62
-        version: 0.1.62(@swc/core@1.3.76)
-      '@swc/core':
-        specifier: ^1.3.76
-        version: 1.3.76
-      '@types/cookie-session':
-        specifier: ^2.0.44
-        version: 2.0.44
-      '@types/node':
-        specifier: ^20.4.4
-        version: 20.4.4
-      prisma:
-        specifier: ^5.0.0
-        version: 5.0.0
-      ts-loader:
-        specifier: ^9.4.4
-        version: 9.4.4(typescript@5.1.6)(webpack@5.88.2)
-      ts-node:
-        specifier: ^10.9.1
-        version: 10.9.1(@swc/core@1.3.76)(@types/node@20.4.4)(typescript@5.1.6)
-      typescript:
-        specifier: ^5.1.6
-        version: 5.1.6
 
   server:
     dependencies:
@@ -627,14 +542,6 @@ packages:
       prettier: '>= 3.0.0'
     dependencies:
       prettier: 3.0.0
-    dev: true
-
-  /@j-l/prettier-config@1.0.2(prettier@3.0.1):
-    resolution: {integrity: sha512-CvlMcnb4P84tbqibrbA/6sF6X1tMHuzGKLzP6bPO5d4DxKsgRparaxnQkUWVGy0A0cobBV4q5LkaWvRu7IK3JA==}
-    peerDependencies:
-      prettier: '>= 3.0.0'
-    dependencies:
-      prettier: 3.0.1
     dev: true
 
   /@j-l/request@1.0.0-beta.7:
@@ -1203,6 +1110,7 @@ packages:
     dependencies:
       '@types/connect': 3.4.35
       '@types/node': 20.4.4
+    dev: true
 
   /@types/cacheable-request@6.0.3:
     resolution: {integrity: sha512-IQ3EbTzGxIigb1I3qPZc1rWJnH0BmSKv5QYTalEwweFvyBDLSAe24zP0le/hyi7ecGfZVlIVAg4BZqb8WBwKqw==}
@@ -1217,6 +1125,7 @@ packages:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
       '@types/node': 20.4.4
+    dev: true
 
   /@types/cookie-session@2.0.44:
     resolution: {integrity: sha512-3DheOZ41pql6raSIkqEPphJdhA2dX2bkS+s2Qacv8YMKkoCbAIEXbsDil7351ARzMqvfyDUGNeHGiRZveIzhqQ==}
@@ -1250,6 +1159,7 @@ packages:
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
       '@types/send': 0.17.1
+    dev: true
 
   /@types/express@4.17.17:
     resolution: {integrity: sha512-Q4FmmuLGBG58btUnfS1c1r/NQdlp3DMfGDGig8WhfpA2YRUtEkxAjkZb0yvplJGYdF1fsQ81iMDcH24sSCNC/Q==}
@@ -1258,6 +1168,7 @@ packages:
       '@types/express-serve-static-core': 4.17.35
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.1
+    dev: true
 
   /@types/http-cache-semantics@4.0.1:
     resolution: {integrity: sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==}
@@ -1289,9 +1200,11 @@ packages:
 
   /@types/mime@1.3.2:
     resolution: {integrity: sha512-YATxVxgRqNH6nHEIsvg6k2Boc1JHI9ZbH5iWFFv/MTkchz3b1ieGDa5T0a9RznNdI0KhVbdbWSN+KWWrQZRxTw==}
+    dev: true
 
   /@types/mime@3.0.1:
     resolution: {integrity: sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==}
+    dev: true
 
   /@types/node@18.17.5:
     resolution: {integrity: sha512-xNbS75FxH6P4UXTPUJp/zNPq6/xsfdJKussCWNOnz4aULWIRwMgP1LgaB5RiBnMX1DPCYenuqGZfnIAx5mbFLA==}
@@ -1299,6 +1212,7 @@ packages:
 
   /@types/node@20.4.4:
     resolution: {integrity: sha512-CukZhumInROvLq3+b5gLev+vgpsIqC2D0deQr/yS1WnxvmYLlJXZpaQrQiseMY+6xusl79E04UjWoqyr+t1/Ew==}
+    dev: true
 
   /@types/parse-json@4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
@@ -1306,9 +1220,11 @@ packages:
 
   /@types/qs@6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
+    dev: true
 
   /@types/range-parser@1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
+    dev: true
 
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
@@ -1321,12 +1237,14 @@ packages:
     dependencies:
       '@types/mime': 1.3.2
       '@types/node': 20.4.4
+    dev: true
 
   /@types/serve-static@1.15.1:
     resolution: {integrity: sha512-NUo5XNiAdULrJENtJXZZ3fHtfMolzZwczzBbnAeBbqBwG+LaG6YaJtuwzwGSQZ2wsCrxjEhNNjAkKigy3n8teQ==}
     dependencies:
       '@types/mime': 3.0.1
       '@types/node': 20.4.4
+    dev: true
 
   /@types/validator@13.11.1:
     resolution: {integrity: sha512-d/MUkJYdOeKycmm75Arql4M5+UuXmf4cHdHKsyw1GcvnNgL6s77UkgSgJ8TE/rI5PYsnwYq5jkcWBLuN/MpQ1A==}
@@ -1339,14 +1257,14 @@ packages:
   /@types/web-bluetooth@0.0.17:
     resolution: {integrity: sha512-4p9vcSmxAayx72yn70joFoL44c9MO/0+iVEBIQXe3v2h2SiAsEIo/G5v6ObFWvNKRFjbrVadNf9LqEEZeQPzdA==}
 
-  /@vitejs/plugin-vue@4.2.3(vite@4.4.9)(vue@3.3.4):
+  /@vitejs/plugin-vue@4.2.3(vite@4.4.12)(vue@3.3.4):
     resolution: {integrity: sha512-R6JDUfiZbJA9cMiguQ7jxALsgiprjBeHL5ikpXfJCH62pPHtI+JdJ5xWj6Ev73yXSlYl86+blXn1kZHQ7uElxw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.4.9(@types/node@18.17.5)
+      vite: 4.4.12(@types/node@18.17.5)
       vue: 3.3.4
     dev: true
 
@@ -4052,12 +3970,6 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier@3.0.1:
-    resolution: {integrity: sha512-fcOWSnnpCrovBsmFZIGIy9UqK2FaI7Hqax+DIO0A9UxeVoY4iweyaFjS5TavZN97Hfehph0nhsZnjlVKzEQSrQ==}
-    engines: {node: '>=14'}
-    hasBin: true
-    dev: true
-
   /prisma@5.0.0:
     resolution: {integrity: sha512-KYWk83Fhi1FH59jSpavAYTt2eoMVW9YKgu8ci0kuUnt6Dup5Qy47pcB4/TLmiPAbhGrxxSz7gsSnJcCmkyPANA==}
     engines: {node: '>=16.13'}
@@ -5177,8 +5089,8 @@ packages:
       extsprintf: 1.3.0
     dev: false
 
-  /vite@4.4.9(@types/node@18.17.5):
-    resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
+  /vite@4.4.12(@types/node@18.17.5):
+    resolution: {integrity: sha512-KtPlUbWfxzGVul8Nut8Gw2Qe8sBzWY+8QVc5SL8iRFnpnrcoCaNlzO40c1R6hPmcdTwIPEDkq0Y9+27a5tVbdQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -5489,16 +5401,3 @@ packages:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
     dev: true
-
-  registry.npmjs.org/@j.l/nestjs-database@1.0.0-alpha.1(@nestjs/common@10.1.1)(@prisma/client@5.0.0):
-    resolution: {integrity: sha512-caZSXSmDaLbwqiJW/6nmlaEXbhB1OrGZDFCwI2Kg4bchAP91cUSfVsEA79X59lbHuPZkwrTcdfDn9hvo6TTAGw==, registry: https://registry.npmmirror.com/, tarball: https://registry.npmjs.org/@j.l/nestjs-database/-/nestjs-database-1.0.0-alpha.1.tgz}
-    id: registry.npmjs.org/@j.l/nestjs-database/1.0.0-alpha.1
-    name: '@j.l/nestjs-database'
-    version: 1.0.0-alpha.1
-    peerDependencies:
-      '@nestjs/common': ^10.0.0
-      '@prisma/client': ^4.0.0
-    dependencies:
-      '@nestjs/common': 10.1.1(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
-      '@prisma/client': 5.0.0(prisma@5.0.0)
-    dev: false
